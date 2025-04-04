@@ -1,0 +1,26 @@
+# General Resources
+
+Flask: https://flask.palletsprojects.com/en/stable/
+Jinja: https://jinja.palletsprojects.com/en/stable/
+Bootstrap: https://getbootstrap.com/docs/5.3/getting-started/introduction/
+SQLite: https://sqlite.org/about.html
+
+## Maybe 
+Flask-WTF – For easy form handling:
+https://flask-wtf.readthedocs.io/en/stable/
+
+Flask-Login – For authentication:
+https://flask-login.readthedocs.io/en/latest/
+
+Flask-Migrate – For database migrations:
+https://flask-migrate.readthedocs.io/en/latest/
+
+Flask-SQLAlchemy (ORM)
+https://flask-sqlalchemy.palletsprojects.com/
+
+Python-dotenv – For managing .env config:
+https://saurabh-kumar.com/python-dotenv/
+
+Bootstrap Icons – If you're already using Bootstrap:
+https://icons.getbootstrap.com/
+
