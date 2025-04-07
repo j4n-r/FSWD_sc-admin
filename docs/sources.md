@@ -24,3 +24,9 @@ https://saurabh-kumar.com/python-dotenv/
 Bootstrap Icons – If you're already using Bootstrap:
 https://icons.getbootstrap.com/
 
+
+### Auth
+Schema: https://www.better-auth.com/docs/concepts/database
+
+### DB
+https://flask.palletsprojects.com/en/stable/tutorial/database/
