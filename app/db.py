@@ -64,11 +64,12 @@ def init_app(app):
 def add_default_users():
     email = "admin@admin.com"
     password = "admin"
+    name = "admin"
     db = get_db()
     try:
         db.execute(
-            "INSERT INTO users (email, password) VALUES (?, ?)",
-            (email, generate_password_hash(password)),
+            "INSERT INTO users (email, password, name) VALUES (?, ?, ?)",
+            (email, generate_password_hash(password), name),
         )
         db.commit()
     except db.IntegrityError:

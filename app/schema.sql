@@ -8,6 +8,7 @@ CREATE TABLE users (
   email TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
   emailVerified BOOLEAN ,
+  name TEXT,
   image TEXT,
   created_at INTEGER,
   updated_at INTEGER
