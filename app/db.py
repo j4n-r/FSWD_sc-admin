@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+from werkzeug.security import check_password_hash, generate_password_hash
 
 import click
 from flask import current_app
@@ -31,25 +32,26 @@ def close_db(e=None):
 
 
 def init_db():
-    """Clear existing data and create new tables."""
+    """Run schema.sql"""
     try:
         db = get_db()
 
         with current_app.open_resource("schema.sql") as f:
             db.executescript(f.read().decode("utf8"))
+        add_default_users()
         return "Initialized DB"
     except Exception:
-        return Exception
+        raise Exception
 
 
-@click.command("init-db")  # Run "flask init-db" in cli to init database
+@click.command("init-db")  
 def init_db_command():
-    """Clear existing data and create new tables."""
+    """Register command `flask init-db`"""
     res = init_db()
     click.echo(res)
 
 
-sqlite3.register_converter("timestamp", lambda v: datetime.fromisoformat(v.decode()))
+sqlite3.register_converter("timestamp", lambda v: datetime.fromisoformat(v.decode())) # unixtimestamps
 
 
 def init_app(app):
@@ -58,3 +60,18 @@ def init_app(app):
     """
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+def add_default_users():
+    email = "admin@admin.com"
+    password = "admin"
+    db = get_db()
+    try:
+        db.execute(
+            "INSERT INTO users (email, password) VALUES (?, ?)",
+            (email, generate_password_hash(password)),
+        )
+        db.commit()
+    except db.IntegrityError:
+        error = f"User {email} is already registered."
+        print(error)
+

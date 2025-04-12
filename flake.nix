@@ -20,6 +20,10 @@
             pkgs.python312
             pkgs.python312Packages.flask
             pkgs.sqlite
+
+            pkgs.tailwindcss
+            pkgs.tailwindcss-language-server
+            pkgs.nodePackages_latest.tailwindcss
           ];
         };
       }
