@@ -14,21 +14,27 @@
     <title>{% block title %}{% endblock %} - Flaskr</title>
     {% endblock %}
   </head>
-  <body class="container min-h-screen h-full flex flex-col justify-between  mx-auto">
+  <body class="min-h-screen h-full flex flex-col justify-between mx-auto">
     <!-- NAVBAR -->
     <nav
-      class="sticky top-0 bg-gray-100 container m-10 p-3 rounded-xl grid grid-cols-5"
+      class="container mx-auto sticky top-0 bg-gray-100 container m-10 p-3 rounded-xl grid grid-cols-5"
     >
-      <div class="col-span-1 pl-6">My App</div>
-      <div class="col-span-3 flex justify-center  gap-x-8">
-        <a>Irgendwas</a>
-        <a>Irgendwas anderes</a>
-        <a>Noch was</a>
+      <div class="col-span-1 pl-6 my-auto">My App</div>
+      <div class="col-span-3 flex justify-center gap-x-[4rem] my-auto">
+        <a href="" class="hover:underline">Irgendwas</a>
+        <a href="" class="hover:underline">Irgendwas anderes</a>
+        <a href="" class="hover:underline">Noch was</a>
       </div>
-      <div class="col-span-1 flex justify-around">
+      <div class="col-span-1 flex justify-around my-auto">
         {% if g.user%}
-        <div> {{ g.user['name'].capitalize() or g.user['email'] }}</div>
-        <a class="" href="{{ url_for('auth.logout') }}">Log out</div>
+        <div class="my-auto">
+          {{ g.user['name'].capitalize() or g.user['email'] }}
+        </div>
+        <a
+          class="p-2 px-3 rounded-md bg-gray-400"
+          href="{{ url_for('auth.logout') }}"
+          >Log out</a
+        >
         {% else %}
         <a href="{{ url_for('auth.login')}}">Log in</a>
         <a href="{{ url_for('auth.register')}}">Register</a>
@@ -37,43 +43,36 @@
     </nav>
 
     <!-- CONTENT -->
-    <div id="content" class="container">{% block content %}{% endblock %}</div>
+    <div id="content" class="container mx-auto">
+      {% block content %}{% endblock %}
+    </div>
 
     <!-- FOOTER -->
     <div id="footer">
       {% block footer %}
-      <footer class="m-4">
-        <div class="container">
-          <div class="sm:flex sm:items-center sm:justify-between">
-            <div>Our App</div>
-            <ul
-              class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
-            >
-              <li>
-                <a href="#" class="hover:underline me-4 md:me-6">About</a>
-              </li>
-              <li>
-                <a href="#" class="hover:underline me-4 md:me-6"
-                  >Privacy Policy</a
-                >
-              </li>
-              <li>
-                <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-              </li>
-              <li>
-                <a href="#" class="hover:underline">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <hr
-            class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
-          />
-          <div
-            class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
-          >
-            © 2023
-          </div>
-        </div>
+      <footer
+        class="bg-gray-100 w-full p-4 border-t border-gray-200 md:flex md:items-center md:justify-between md:p-6"
+      >
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2023 <a href="" class="hover:underline">Something™</a>. All
+          Rights Reserved.
+        </span>
+        <ul
+          class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
+        >
+          <li>
+            <a href="#" class="hover:underline me-4 md:me-6">About</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline">Contact</a>
+          </li>
+        </ul>
       </footer>
       {%endblock%}
     </div>
@@ -83,7 +82,7 @@
       integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
       crossorigin="anonymous"
       ></script>
-      --> 
+      -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </body>
 </html>

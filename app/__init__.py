@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from flask import render_template
+from app.auth import login_required
 
 
 def create_app(test_config=None):
@@ -34,6 +35,7 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
 
     @app.route("/")
+    @login_required
     def hello():
         return render_template("home.html")
 

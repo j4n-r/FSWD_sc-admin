@@ -36,3 +36,4 @@ https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
 
 ## CSS/Styling
 https://tailwindcss.com/plus/ui-blocks/application-ui/
+https://flowbite.com/
