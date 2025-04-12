@@ -30,3 +30,6 @@ Schema: https://www.better-auth.com/docs/concepts/database
 
 ### DB
 https://flask.palletsprojects.com/en/stable/tutorial/database/
+
+## ChatGPT
+https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
