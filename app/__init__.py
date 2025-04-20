@@ -1,17 +1,24 @@
 import os
 
 from flask import Flask
-from flask import render_template
-from app.auth import login_required
+from flask_jwt_extended import JWTManager
+
+from app.auth import auth_bp
+from app.main import main_bp
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev",
-        DATABASE=os.path.join(app.instance_path, "dev.sqlite"),
+
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    DATABASE_PATH = os.path.abspath(
+        os.path.join(BASE_DIR, "..", "..", "instance", "dev.sqlite3")
     )
+    app.config.from_mapping(SECRET_KEY="dev", DATABASE=DATABASE_PATH)
+    # Setup the Flask-JWT-Extended extension
+    app.config["JWT_SECRET_KEY"] = "dev"  # Change this!
+    jwt = JWTManager(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -30,17 +37,6 @@ def create_app(test_config=None):
 
     db.init_app(app)
 
-    from . import auth
-
-    app.register_blueprint(auth.bp)
-
-    @app.route("/")
-    @login_required
-    def hello():
-        return render_template("home.html")
-
-    @app.route("/chat")
-    def chat():
-        return render_template("chat.html")
-
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(main_bp, url_prefix="/")
     return app

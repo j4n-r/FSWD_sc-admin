@@ -1,17 +1,13 @@
--- Initialize the database.
--- Drop any existing data and create empty tables.
-
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id  PRIMARY KEY NOT NULL, -- UUID as TEXT
   email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
   emailVerified BOOLEAN ,
   name TEXT,
   image TEXT,
-  created_at INTEGER,
-  updated_at INTEGER
+  updated_at NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+  created_at  TEXT                    NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
-
-

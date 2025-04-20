@@ -19,6 +19,7 @@
           packages = [
             pkgs.python312
             pkgs.python312Packages.flask
+            pkgs.python312Packages.flask-jwt-extended
             pkgs.sqlite
 
             pkgs.tailwindcss
