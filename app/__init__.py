@@ -39,4 +39,8 @@ def create_app(test_config=None):
     def hello():
         return render_template("home.html")
 
+    @app.route("/chat")
+    def chat():
+        return render_template("chat.html")
+
     return app

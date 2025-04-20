@@ -37,3 +37,8 @@ https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
 ## CSS/Styling
 https://tailwindcss.com/plus/ui-blocks/application-ui/
 https://flowbite.com/
+
+## Websockets
+https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event
