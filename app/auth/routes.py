@@ -1,14 +1,22 @@
 from flask import (
+    current_app,
     flash,
+    jsonify,
     redirect,
     render_template,
     request,
     session,
     url_for,
 )
+from flask_jwt_extended import (
+    create_access_token,
+    create_refresh_token,
+    jwt_required,
+    get_jwt_identity,
+)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from app.db import get_db
+from app.db import get_db, query_db
 
 from . import auth_bp
 
@@ -71,3 +79,51 @@ def login():
 def logout():
     session.clear()
     return redirect("/auth/login")
+
+
+@auth_bp.route("/token", methods=("GET", "POST"))
+def token():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    db = get_db()
+    error = None
+
+    if not email:
+        error = "Email is required."
+    elif not password:
+        error = "Password is required."
+
+    if error is None:
+        try:
+            db.execute(
+                "INSERT INTO users (email, password) VALUES (?, ?)",
+                (email, generate_password_hash(password)),
+            )
+            db.commit()
+        except db.IntegrityError:
+            error = f"User {email} is already registered."
+        else:
+            return jsonify({"msg": "Bad username or password"}), 401
+
+    user = query_db("SELECT * FROM users WHERE email=?", [email], one=True)
+    if user is None:
+        current_app.logger.exception("user not found in db")
+        return jsonify("Something went wrong")
+
+    additional_claims = {"user_id": user["id"], "username": user["username"]}
+
+    access_token = create_access_token(
+        email, additional_claims=additional_claims, fresh=True
+    )
+    refresh_token = create_refresh_token(identity=email)
+
+    # automatically sets right headers (json.dump) only does  json
+    return jsonify(access_token=access_token, refresh_token=refresh_token)
+
+
+@auth_bp.route("/refresh", methods=["POST"])
+@jwt_required(refresh=True)
+def refresh():
+    identity = get_jwt_identity()
+    access_token = create_access_token(identity=identity, fresh=False)
+    return jsonify(access_token=access_token)

@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 from flask import Flask
 from flask_jwt_extended import JWTManager
@@ -17,6 +18,8 @@ def create_app(test_config=None):
     )
     app.config.from_mapping(SECRET_KEY="dev", DATABASE=DATABASE_PATH)
     # Setup the Flask-JWT-Extended extension
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
     app.config["JWT_SECRET_KEY"] = "dev"  # Change this!
     jwt = JWTManager(app)
 

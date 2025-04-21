@@ -87,3 +87,11 @@ def add_default_users():
     except db.IntegrityError:
         error = f"User {email} is already registered."
         print(error)
+
+
+# helper function
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
