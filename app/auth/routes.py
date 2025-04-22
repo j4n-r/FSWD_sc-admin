@@ -8,11 +8,12 @@ from flask import (
     session,
     url_for,
 )
+from flask_cors import cross_origin
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
-    jwt_required,
     get_jwt_identity,
+    jwt_required,
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -81,16 +82,27 @@ def logout():
     return redirect("/auth/login")
 
 
-@auth_bp.route("/token", methods=("GET", "POST"))
+@cross_origin()
+@auth_bp.route("/token", methods=("GET", "POST", "OPTIONS"))
 def token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
+    if request.method == "OPTIONS":
+        return "", 200
+
+    request_data = request.get_json()
     db = get_db()
     error = None
+    email = None
+    password = None
+    if request_data:
+        if "email" in request_data:
+            email = request_data["email"]
+
+        if "password" in request_data:
+            password = request_data["password"]
 
     if not email:
         error = "Email is required."
-    elif not password:
+    if not password:
         error = "Password is required."
 
     if error is None:

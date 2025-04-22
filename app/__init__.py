@@ -2,7 +2,9 @@ import os
 from datetime import timedelta
 
 from flask import Flask
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from werkzeug.routing import Rule
 
 from app.auth import auth_bp
 from app.main import main_bp
@@ -11,6 +13,8 @@ from app.main import main_bp
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+
+    CORS(app)
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     DATABASE_PATH = os.path.abspath(

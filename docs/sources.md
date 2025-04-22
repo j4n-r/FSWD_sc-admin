@@ -42,3 +42,7 @@ https://flowbite.com/
 https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
 
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event
+
+## CORS
+https://github.com/corydolphin/flask-cors
+https://github.com/corydolphin/flask-cors/issues/292

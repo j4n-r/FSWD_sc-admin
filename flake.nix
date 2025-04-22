@@ -17,15 +17,22 @@
       {
         devShells.default = pkgs.mkShell {
           packages = [
-            pkgs.python312
-            pkgs.python312Packages.flask
-            pkgs.python312Packages.flask-jwt-extended
+            (pkgs.python313.withPackages (
+              python-pkgs: with python-pkgs; [
+                flask
+                flask-jwt-extended
+                flask-cors
+              ]
+            ))
             pkgs.sqlite
 
             pkgs.tailwindcss
             pkgs.tailwindcss-language-server
             pkgs.nodePackages_latest.tailwindcss
           ];
+          env = {
+            PYRIGHT_PYTHON_PATH = "${pkgs.python312}/bin/python3";
+          };
         };
       }
     );

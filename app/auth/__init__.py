@@ -1,5 +1,7 @@
 import functools
-from flask import Blueprint, session, redirect, url_for, g
+
+from flask import Blueprint, g, redirect, session, url_for
+
 from app.db import get_db
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth", template_folder="templates")
