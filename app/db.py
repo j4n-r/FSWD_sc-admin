@@ -68,25 +68,44 @@ def init_app(app):
 
 
 def add_default_users():
-    email = "admin@admin.com"
-    username = "admin"
-    password = "admin"
-    name = "admin"
-    user_id = str(uuid.uuid4())
+    users = [
+        {
+            "id": str(uuid.uuid4()),
+            "email": "admin@admin.com",
+            "username": "admin",
+            "password": "admin",
+            "name": "admin",
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "email": "test@test.com",
+            "username": "test",
+            "password": "test",
+            "name": "test",
+        },
+    ]
     db = get_db()
-    try:
-        db.execute(
-            """
-            INSERT INTO users (id, email, username, password, name)
-            VALUES (?, ?, ?, ?, ?)
-            """,
-            (user_id, email, username, generate_password_hash(password), name),
-        )
-        db.commit()
-        print(f"Default user {email} created.")
-    except db.IntegrityError:
-        error = f"User {email} is already registered."
-        print(error)
+
+    for user in users:
+        try:
+            db.execute(
+                """
+                INSERT INTO users (id, email, username, password, name)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    user["id"],
+                    user["email"],
+                    user["username"],
+                    generate_password_hash(user["password"]),
+                    user["name"],
+                ),
+            )
+            db.commit()
+            print(f"Default user {user["email"]} created.")
+        except db.IntegrityError:
+            error = f"User {user["email"]} is already registered."
+            print(error)
 
 
 # helper function

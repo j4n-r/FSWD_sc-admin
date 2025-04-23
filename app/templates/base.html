@@ -4,85 +4,81 @@
     {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
-    <!--<link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC"
-      crossorigin="anonymous"
-    />
-    -->
     <title>{% block title %}{% endblock %} - Flaskr</title>
     {% endblock %}
   </head>
-  <body class="min-h-screen h-full flex flex-col justify-between mx-auto">
-    <!-- NAVBAR -->
-    <nav
-      class="container mx-auto sticky top-0 bg-gray-100 container m-10 p-3 rounded-xl grid grid-cols-5"
-    >
-      <div class="col-span-1 pl-6 my-auto">My App</div>
-      <div class="col-span-3 flex justify-center gap-x-[4rem] my-auto">
-        <a href="" class="hover:underline">Irgendwas</a>
-        <a href="" class="hover:underline">Irgendwas anderes</a>
-        <a href="" class="hover:underline">Noch was</a>
-      </div>
-      <div class="col-span-1 flex justify-around my-auto">
-        {% if g.user%}
-        <div class="my-auto">
-          {{ g.user['name'].capitalize() or g.user['email'] }}
+  <body class="min-h-screen h-full">
+    <div class="flex h-full">
+      <!-- SIDEBAR -->
+      <aside class="w-64 bg-white shadow-xl h-full flex flex-col">
+        <!-- Logo/App Name -->
+        <div class="p-6 border-b">
+          <h1 class="text-xl font-bold">My App</h1>
         </div>
-        <a
-          class="p-2 px-3 rounded-md bg-gray-400"
-          href="{{ url_for('auth.logout') }}"
-          >Log out</a
-        >
-        {% else %}
-        <a href="{{ url_for('auth.login')}}">Log in</a>
-        <a href="{{ url_for('auth.register')}}">Register</a>
-        {% endif %}
+
+        <!-- Navigation Links -->
+        <nav class="flex-1 p-4">
+          <div class="space-y-4">
+            <a href="" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+              >Irgendwas</a
+            >
+            <a href="" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+              >Irgendwas anderes</a
+            >
+            <a href="/chat" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+              >Chat</a
+            >
+          </div>
+        </nav>
+
+        <!-- User Section -->
+        <div class="p-4 border-t">
+          {% if g.user %}
+          <div class="mb-3 text-sm text-gray-600 text-center">
+            {{ g.user['name'].capitalize() or g.user['email'] }}
+          </div>
+          <a
+            class="block w-full text-center p-2 rounded-md bg-gray-400 text-white hover:bg-gray-500"
+            href="{{ url_for('auth.logout') }}"
+            >Log out</a
+          >
+          {% else %}
+          <div class="space-y-2">
+            <a
+              class="block w-full text-center p-2 rounded-md border hover:bg-gray-50"
+              href="{{ url_for('auth.login')}}"
+              >Log in</a
+            >
+            <a
+              class="block w-full text-center p-2 rounded-md bg-gray-400 text-white hover:bg-gray-500"
+              href="{{ url_for('auth.register')}}"
+              >Register</a
+            >
+          </div>
+          {% endif %}
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col">
+        <!-- CONTENT -->
+        <main class="flex-1 p-8">
+          <div id="content" class="container mx-auto">
+            {% block content %}{% endblock %}
+          </div>
+        </main>
       </div>
-    </nav>
-
-    <!-- CONTENT -->
-    <div id="content" class="container mx-auto">
-      {% block content %}{% endblock %}
     </div>
 
-    <!-- FOOTER -->
-    <div id="footer">
-      {% block footer %}
-      <footer
-        class="bg-gray-100 w-full p-4 border-t border-gray-200 md:flex md:items-center md:justify-between md:p-6"
-      >
-        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-          >© 2023 <a href="" class="hover:underline">Something™</a>. All
-          Rights Reserved.
-        </span>
-        <ul
-          class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
-        >
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">About</a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline">Contact</a>
-          </li>
-        </ul>
-      </footer>
-      {%endblock%}
-    </div>
-    <!-- Messeswith tailwind stuff
-        <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
-      crossorigin="anonymous"
-      ></script>
-      -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+      // Global User Object
+      const user = {
+        id: "{{g.user['id']}}",
+        name: "{{g.user['name']}}",
+        email: "{{g.user['email']}}",
+      };
+      console.log(user);
+    </script>
   </body>
 </html>

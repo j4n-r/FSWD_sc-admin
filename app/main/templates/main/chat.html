@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %} Chat{% endblock %} {% block head %}
+{% extends "base.html" %} {% block title %}Chat{% endblock %} {% block head %}
 {{ super() }}
 <style type="text/css">
   .important {
@@ -6,35 +6,50 @@
   }
 </style>
 {% endblock %} {% block content %}
-<h1>Index</h1>
-<p class="important">Welcome to my awesome homepage.</p>
-<div id="chat-window" class="h-2/3 w-full bg-green-100"></div>
-<form id="chat-form">
-  <input
-    type="text"
-    name="chat-input"
-    id="chat-input"
-    class="w-full bg-gray-100"
-  />
-  <button type="submit">Send</button>
-</form>
+<div class="h-full flex flex-col gap-4 p-4">
+  <div
+    id="chat-window"
+    class="flex-1 bg-gray-50 rounded-lg shadow-inner p-4 overflow-y-auto min-h-[500px]"
+  ></div>
+
+  <form id="chat-form" class="flex gap-2">
+    <input
+      type="text"
+      name="chat-input"
+      id="chat-input"
+      class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+      placeholder="Type your message..."
+    />
+    <button
+      type="submit"
+      class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+    >
+      Send
+    </button>
+  </form>
+</div>
 
 <script>
   const form = document.querySelector("form");
   const chatWindow = document.querySelector("#chat-window");
+  const chatInput = document.querySelector("#chat-input");
 
-  // submit handler
+  function scrollToBottom() {
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(e);
     const formData = new FormData(form);
-    sendMessage(formData.get("chat-input"));
+    const message = formData.get("chat-input");
+    if (message.trim()) {
+      sendMessage(message);
+      chatInput.value = "";
+    }
   });
 
-  // Create WebSocket connection.
   const socket = new WebSocket("ws://192.168.0.240:8080");
 
-  // Connection opened
   socket.addEventListener("open", (event) => {
     socket.send(
       JSON.stringify({
@@ -55,13 +70,13 @@
       },
       meta: {
         messageId: "4a9f3e7b-8c2d-4d6f-b654-abcdef654321",
-        senderId: "d290f1ee-6c54-4b01-90e6-d701748f0851",
+        senderId: user.id,
         timestamp: "2025-04-19T13:00:05Z",
       },
     });
 
     socket.send(msg);
-    console.log("message send", msg);
+    console.log("message sent", msg);
   }
 
   socket.addEventListener("message", (event) => {
@@ -69,9 +84,10 @@
     const msg = JSON.parse(event.data).payload.content;
     const msgDiv = document.createElement("div");
 
-    msgDiv.className = "msg";
+    msgDiv.className = "p-3 bg-white rounded-lg shadow-sm mb-2";
     msgDiv.textContent = msg;
     chatWindow.append(msgDiv);
+    scrollToBottom();
   });
 </script>
-{% endblock %}L
+{% endblock %}
