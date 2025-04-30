@@ -70,14 +70,14 @@ def init_app(app):
 def add_default_users():
     users = [
         {
-            "id": str(uuid.uuid4()),
+            "id": "624f76c7-7b46-4309-8207-126317477e88",
             "email": "admin@admin.com",
             "username": "admin",
             "password": "admin",
             "name": "admin",
         },
         {
-            "id": str(uuid.uuid4()),
+            "id": "203170c2-e811-44ba-a24f-a1e57d53b363",
             "email": "test@test.com",
             "username": "test",
             "password": "test",
@@ -102,9 +102,9 @@ def add_default_users():
                 ),
             )
             db.commit()
-            print(f"Default user {user["email"]} created.")
+            print(f"Default user {user['email']} created.")
         except db.IntegrityError:
-            error = f"User {user["email"]} is already registered."
+            error = f"User {user['email']} is already registered."
             print(error)
 
 
