@@ -18,15 +18,23 @@ nav_order: 1
 
 ## The problem
 
-[Describe which problem your application tackles and why it is relevant.]
+Company Y wants to have internal communication but they do have some requirements.
+- Admin dashboard for user and group managing
+- Web view chat
+- View stats like how many messages where send
+- Instant messaging
+- Full transparency over all messages
+- Self hosted so it runs on their own servers
 
 ## Our solution
 
-[Describe why and how your app solves the stated problem. Don't over-promise: the description should match what your app actually delivers.]
+The web view provides different functionality based on the users role.
+Normal users can only use the chat app. 
+Admin users can manage normal users, groups and their members.
 
 ## Target user
 
-[Scope your target user(s), e.g., with the help of personas.]
+Company Employees, IT Admins
 
 ## Customer journey
 
