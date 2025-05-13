@@ -13,6 +13,7 @@ Simple
 
 About
 : <img src="https://raw.githubusercontent.com/j4n-r/FSWD_sc-admin/refs/heads/main/docs/assets/svg/nixos.svg" alt="NixOS" style="height: 1.2em; width: 1.2em; vertical-align: text-bottom;"> ∪ <img src="https://raw.githubusercontent.com/j4n-r/FSWD_sc-admin/refs/heads/main/docs/assets/svg/gnuemacs.svg" alt="Emacs" style="height: 1.2em; width: 1.2em; vertical-align: text-bottom;">
+
 Matr.-Nr.
 : 77212019358
 
