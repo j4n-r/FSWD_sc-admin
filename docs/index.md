@@ -3,24 +3,19 @@ title: Home
 nav_order: 0
 ---
 
-{: .attention }
-> Any text enclosed by `[ ]` are placeholders, including the opening and closing brackets.
->
-> You may delete this `attention` box.
+# Team Chat
 
-# [Project Name]
-
-[Project description]
+Simple 
 
 ## Team members
 
-### [Jane Dane]
+### Jan Rueggeberg
 
 About
-: Some info about Jane
+: <img src="/assets/svg/nixos.svg" alt="NixOS" height="24"> <img src="/assets/svg/gnuemacs.svg" alt="Emacs" height="24">
 
 Matr.-Nr.
-: 1234567
+: 77212019358
 
 ### [Joe Doe]
 

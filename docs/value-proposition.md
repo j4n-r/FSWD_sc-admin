@@ -33,9 +33,11 @@ Normal users can only use the chat app.
 Admin users can manage normal users, groups and their members.
 
 ## Target user
-
-Company Employees, IT Admins
+The target would be companies in general. 
+The main user based on that: 
+- Company employees who are using the chat app
+- IT admins who are managing the other users
 
 ## Customer journey
+TODO
 
-[Illustrate the customer journey, from the app's entry point to a completed task. You might want to show the customer journey as (schematic) screen flows.]

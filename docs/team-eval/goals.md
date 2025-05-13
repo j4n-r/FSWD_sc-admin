@@ -16,3 +16,20 @@ nav_order: 1
 + ToC
 {: toc }
 </details>
+
+## Team Goals 
+| Goal | Description | Date Completed | Notes |
+|------|-------------|----------------|-------|
+|      |             |                |       |
+
+## Individual Goals
+### Jan Rueggeberg
+| Goal | Description | Date Completed | Notes |
+|------|-------------|----------------|-------|
+|      |             |                |       |
+
+### 
+| Goal | Description | Date Completed | Notes |
+|------|-------------|----------------|-------|
+|      |             |                |       |
+
