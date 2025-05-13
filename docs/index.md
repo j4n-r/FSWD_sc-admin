@@ -12,7 +12,7 @@ Simple
 ### Jan Rueggeberg
 
 About
-: <img src="/assets/svg/nixos.svg" alt="NixOS" height="24"> <img src="/assets/svg/gnuemacs.svg" alt="Emacs" height="24">
+: <img src="https://raw.githubusercontent.com/j4n-r/FSWD_sc-admin/refs/heads/main/docs/assets/svg/nixos.svg" alt="NixOS" height="24"> <img src="https://raw.githubusercontent.com/j4n-r/FSWD_sc-admin/refs/heads/main/docs/assets/svg/gnuemacs.svg" alt="Emacs" height="24">
 
 Matr.-Nr.
 : 77212019358
