@@ -1,99 +1,108 @@
 {% extends "base.html" %} {% block title %}Chat{% endblock %} {% block head %}
 {{ super() }} {% endblock %} {% block content %}
 <div class="h-full flex flex-col gap-4 p-4">
-  <div
-    id="chat-window"
-    class="flex-1 bg-gray-50 rounded-lg shadow-inner p-4 overflow-y-auto min-h-[500px]"
-  ></div>
+    <div
+        id="chat-window"
+        class="flex-1 bg-gray-50 rounded-lg shadow-inner p-4 overflow-y-auto min-h-[500px]"
+    ></div>
 
-  <form id="chat-form" class="flex gap-2">
-    <input
-      type="text"
-      name="chat-input"
-      id="chat-input"
-      class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
-      placeholder="Type your message..."
-    />
-    <button
-      type="submit"
-      class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-    >
-      Send
-    </button>
-  </form>
+    <form id="chat-form" class="flex gap-2">
+        <input
+            type="text"
+            name="chat-input"
+            id="chat-input"
+            class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+            placeholder="Type your message..."
+        />
+        <button
+            type="submit"
+            class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+            Send
+        </button>
+    </form>
 </div>
 
 <script>
-  const form = document.querySelector("form");
-  const chatWindow = document.querySelector("#chat-window");
-  const chatInput = document.querySelector("#chat-input");
+    const form = document.querySelector("form");
+    const chatWindow = document.querySelector("#chat-window");
+    const chatInput = document.querySelector("#chat-input");
 
-  function scrollToBottom() {
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const message = formData.get("chat-input");
-    if (message.trim()) {
-      sendMessage(message);
-      chatInput.value = "";
+    function scrollToBottom() {
+        chatWindow.scrollTop = chatWindow.scrollHeight;
     }
-  });
 
-  let socket = null;
-  function connectWs() {
-    socket = new WebSocket("ws://192.168.0.240:8080");
-
-    socket.addEventListener("open", (event) => {
-      socket.send(
-        JSON.stringify({
-          messageType: "IdMessage",
-          senderId: user.id,
-          timestamp: new Date(),
-        }),
-      );
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const message = formData.get("chat-input");
+        if (message.trim()) {
+            sendMessage(message);
+            chatInput.value = "";
+        }
     });
 
-    socket.addEventListener("message", (event) => {
-      console.log(event);
-      const msg = JSON.parse(event.data).payload.content;
-      const msgDiv = document.createElement("div");
+    function connectWs() {
+        ws = new WebSocket("ws://192.168.0.240:8080");
 
-      msgDiv.className = "p-3 bg-white rounded-lg shadow-sm mb-2";
-      msgDiv.textContent = msg;
-      chatWindow.append(msgDiv);
-      scrollToBottom();
-    });
+        ws.onopen = (event) => {
+            console.log("OPEN", event);
+            ws.send(
+                JSON.stringify({
+                    messageType: "IdMessage",
+                    senderId: user.id,
+                    timestamp: new Date(),
+                }),
+            );
+        };
 
-    socket.addEventListener("error", (event) => {
-      console.error("WebSocket error:", event);
-    });
+        ws.onmessage = (event) => {
+            console.log("MESSAGE", event);
+            const data = JSON.parse(event.data);
+            const msg = data.payload.content;
 
-    socket.addEventListener("close", (event) => {
-      console.log("Websocket closed", event);
-      setTimeout(function () {
-        connectWs();
-      }, 2000);
-    });
-  }
+            const msgDiv = document.createElement("div");
+            if (data.meta.senderId === user.id) {
+                // sender is the same as the currently logged in user
+                msgDiv.className =
+                    "p-3 bg-[#9798be] w-2/5 rounded-lg ml-auto shadow-sm mb-2";
+            } else {
+                msgDiv.className =
+                    "p-3  bg-white w-2/5  rounded-lg shadow-sm mb-2";
+            }
 
-  function sendMessage(messageText) {
-    const msg = JSON.stringify({
-      messageType: "ChatMessage",
-      payload: {
-        content: messageText,
-      },
-      meta: {
-        conversationId: "c0000000-0000-0000-0000-00000000d001",
-        senderId: user.id,
-        timestamp: new Date(),
-      },
-    });
-    socket.send(msg);
-    console.log("message sent", msg);
-  }
-  connectWs();
+            msgDiv.textContent = msg;
+            chatWindow.append(msgDiv);
+            scrollToBottom();
+        };
+
+        ws.onerror = (event) => {
+            console.error("WebSocket error:", event);
+        };
+
+        ws.onclose = (event) => {
+            console.log("Websocket closed", event);
+            setTimeout(function () {
+                connectWs();
+            }, 2000);
+        };
+    }
+
+    function sendMessage(messageText) {
+        const msg = JSON.stringify({
+            messageType: "ChatMessage",
+            payload: {
+                content: messageText,
+            },
+            meta: {
+                conversationId: "c0000000-0000-0000-0000-00000000d001",
+                senderId: user.id,
+                timestamp: new Date(),
+            },
+        });
+        ws.send(msg);
+        console.log("message sent", msg);
+    }
+    connectWs();
 </script>
 {% endblock %}
