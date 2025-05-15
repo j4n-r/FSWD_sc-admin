@@ -20,11 +20,11 @@ nav_order: 1
 
 Company Y wants to have internal communication but they do have some requirements.
 - Admin dashboard for user and group managing
-- Web view chat
+- Chat in webview
 - View stats like how many messages where send
 - Instant messaging
 - Full transparency over all messages
-- Self hosted so it runs on their own servers
+- Option to self hosted so it runs on their own servers
 
 ## Our solution
 
@@ -35,7 +35,7 @@ Admin users can manage normal users, groups and their members.
 ## Target user
 The target would be companies in general.
 
-The main user based on that would be: 
+The main users based on that would be: 
 - Company employees who are using the chat app
 - IT admins who are managing the other users
 

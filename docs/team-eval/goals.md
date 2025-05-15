@@ -18,18 +18,11 @@ nav_order: 1
 </details>
 
 ## Team Goals 
-| Goal | Description | Date Completed | Notes |
-|------|-------------|----------------|-------|
-|      |             |                |       |
+- make a working app
 
 ## Individual Goals
 ### Jan Rueggeberg
-| Goal | Description | Date Completed | Notes |
-|------|-------------|----------------|-------|
-|      |             |                |       |
+- learn new things
 
-### 
-| Goal | Description | Date Completed | Notes |
-|------|-------------|----------------|-------|
-|      |             |                |       |
+### Selin Günaydin
 

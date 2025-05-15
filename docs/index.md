@@ -17,7 +17,7 @@ About
 Matr.-Nr.
 : 77212019358
 
-### [Joe Doe]
+### Selin Günaydin
 
 About
 : Some info about Joe
