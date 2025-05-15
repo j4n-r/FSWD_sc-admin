@@ -1,4 +1,29 @@
 
+# Team Chat
+
+### Members 
+
+**Jan Rueggeberg**
+Matr.-Nr.
+: 77212019358
+
+**Selin Günaydin**
+Matr.-Nr.
+: 77211985166
+
+
+### Run the app
+
+Python venv + install requirements
+```bash
+ python -m venv venv/ 
+ source 
+ pip install -r requirements.txt
+ source venv/bin/activate
+```
+
+TODO: Test venv installation (not using flakes)
+
 Init db 
 ```
 flask init-db
