@@ -13,6 +13,7 @@ Matr.-Nr.
 Matr.-Nr.
 : 77211985166
 
+TODO: add instructions for websocket server and env variables 
 
 ### Run the app
 
