@@ -19,11 +19,8 @@ Matr.-Nr.
 
 ### Selin Günaydin
 
-About
-: Some info about Joe
-
-Matr.-Nr.
-: 1234567
+Matrikel Nummer
+: 77211985166							
 
 ## Eidesstattliche Erklärung
 

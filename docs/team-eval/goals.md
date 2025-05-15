@@ -25,4 +25,4 @@ nav_order: 1
 - learn new things
 
 ### Selin Günaydin
-
+- good teamwork
