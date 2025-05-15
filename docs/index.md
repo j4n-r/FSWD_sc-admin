@@ -5,8 +5,6 @@ nav_order: 0
 
 # Team Chat
 
-Simple 
-
 ## Team members
 
 ### Jan Rueggeberg
