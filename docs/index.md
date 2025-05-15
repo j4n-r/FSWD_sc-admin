@@ -19,8 +19,8 @@ Matr.-Nr.
 
 ### Selin Günaydin
 
-Matrikel Nummer
-: 77211985166							
+Matr.-Nr.
+: 77211985166
 
 ## Eidesstattliche Erklärung
 
