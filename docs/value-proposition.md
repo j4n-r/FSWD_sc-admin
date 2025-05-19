@@ -35,6 +35,8 @@ The intuitive web interface differentiates clearly between user roles:
 * **Professors (Admins)**: Full administrative capabilities including group and user management, as well as complete visibility into student interactions.
 * **Students**: Access to group chats and communication features, facilitating seamless and organized academic discussions.
 
+This will be a one-off solution, meaning the application is designed for use by a single professor per instance, without multi-admin support in this initial version. Future enhancements, such as dedicated course management, are contingent on available development time.
+
 ## Target User
 
 The primary target users are:
