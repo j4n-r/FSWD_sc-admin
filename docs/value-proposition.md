@@ -3,12 +3,9 @@ title: Value Proposition
 nav_order: 1
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
-# Value proposition
 
+# Value Proposition
 <details open markdown="block">
 {: .text-delta }
 <summary>Table of contents</summary>
@@ -16,29 +13,39 @@ nav_order: 1
 {: toc }
 </details>
 
-## The problem
+## The Problem
+Professors need an easy and effective way to facilitate online discussions and interactions among their students. Traditional messaging apps lack the necessary administrative control and transparency required to prevent misuse, manage student groups flexibly, and maintain academic integrity.
 
-Company Y wants to have internal communication but they do have some requirements.
-- Admin dashboard for user and group managing
-- Chat in webview
-- View stats like how many messages where send
-- Instant messaging
-- Full transparency over all messages
-- Option to self hosted so it runs on their own servers
+Specific pain points include:
 
-## Our solution
+* Difficulty managing multiple student groups quickly and efficiently
+* Lack of transparency, making it challenging to monitor and prevent misuse
+* Limited control over group creation, deletion, and management
 
-The web view provides different functionality based on the users role.
-Normal users can only use the chat app. 
-Admin users can manage normal users, groups and their members.
+## Our Solution
 
-## Target user
-The target would be companies in general.
+We offer a dedicated web-based chat platform designed specifically for professors and academic environments. The platform provides robust administrative controls allowing professors to easily:
 
-The main users based on that would be: 
-- Company employees who are using the chat app
-- IT admins who are managing the other users
+* Create, reorder, and delete student groups instantly
+* Monitor all student communications transparently to prevent misuse and facilitate productive discussions
+* Maintain full administrative oversight, ensuring academic integrity and student safety
 
-## Customer journey
+The intuitive web interface differentiates clearly between user roles:
+
+* **Professors (Admins)**: Full administrative capabilities including group and user management, as well as complete visibility into student interactions.
+* **Students**: Access to group chats and communication features, facilitating seamless and organized academic discussions.
+
+## Target User
+
+The primary target users are:
+
+* Professors who require a secure and transparent platform for managing class discussions
+* Students participating in organized group discussions or projects under academic supervision
+
+## Customer Journey
+
 TODO
+
+--- 
+This text was rewritten by an LLM (the idea is our own), see the sources.md file for the chat. (PDF will follow)
 
