@@ -36,6 +36,9 @@ flask init-db
 flask run --debug
 ```
 
+### Icons
+Pick an icon from (https://lucide.dev/icons/) and click on "Copy SVG"
 
 At the moment tailwindcss via cdn is used, maybe change that in the future.
 https://tailwindcss.com/docs/installation/play-cdn
+

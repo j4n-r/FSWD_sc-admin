@@ -69,8 +69,10 @@ def login():
         if error is None:
             session.clear()
             session["user_id"] = user["id"]
+            current_app.logger.info("%s logged in", user["email"])
             return redirect("/")
 
+        current_app.logger.warn("%s", error)
         flash(error)
 
     return render_template("auth/login.html")

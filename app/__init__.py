@@ -1,4 +1,5 @@
 import os
+from logging.config import dictConfig
 from datetime import timedelta
 
 from flask import Flask
@@ -11,6 +12,22 @@ from app.main import main_bp
 
 
 def create_app(test_config=None):
+    dictConfig({
+        'version': 1,
+        'formatters': {'default': {
+            'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+        }},
+        'handlers': {'wsgi': {
+            'class': 'logging.StreamHandler',
+            'stream': 'ext://flask.logging.wsgi_errors_stream',
+            'formatter': 'default'
+        }},
+        'root': {
+            'level': 'INFO',
+            'handlers': ['wsgi']
+        }
+    })
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
 
