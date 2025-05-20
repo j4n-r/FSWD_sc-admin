@@ -3,7 +3,6 @@
   <head>
     {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
     <title>{% block title %}{% endblock %} - Flaskr</title>
     {% endblock %}
   </head>
@@ -19,8 +18,10 @@
         <!-- Navigation Links -->
         <nav class="flex-1 p-4">
           <div class="space-y-4">
-            <a href="" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
-              >Irgendwas</a
+            <a
+              href="/conversations"
+              class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+              >Chats</a
             >
             <a href="" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
               >Irgendwas anderes</a

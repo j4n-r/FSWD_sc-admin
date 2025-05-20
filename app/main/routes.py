@@ -1,8 +1,9 @@
-from flask import (
-    render_template,
-)
+import json
+
+from flask import g, render_template
 
 from app.auth import login_required
+from app.db import get_db, query_db
 
 from . import main_bp
 
@@ -13,6 +14,31 @@ def hello():
     return render_template("main/home.html")
 
 
-@main_bp.route("/chat")
-def chat():
-    return render_template("main/chat.html")
+@main_bp.route("/chat/<string:id>")
+def chat(id):
+    conv = query_db("SELECT * FROM conversations WHERE id = ?", [id], one=True)
+    return render_template("main/chat_id.html", conv=conv)
+
+
+@main_bp.route("/conversations")
+def conversations():
+    conversations = query_db("SELECT * from conversations")
+    print(conversations[0]["id"])
+    return render_template("main/conversations.html", conversations=conversations)
+
+
+@main_bp.route("conversations/<string:id>")
+def conversation(id):
+    conv = query_db("SELECT * from conversations WHERE id = ?", [id], one=True)
+    users = query_db(
+        """
+        SELECT cm.role,u.username, u.email c FROM conversation_members cm
+        JOIN users u ON u.id=cm.user_id
+        WHERE conversation_id = ?
+        ORDER BY cm.role desc
+        """,
+        [conv["id"]],
+    )
+    for user in users:
+        print(user["username"])
+    return render_template("main/conversations_id.html", conv=conv, users=users)
