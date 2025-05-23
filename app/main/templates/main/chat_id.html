@@ -4,14 +4,16 @@
   <div class="font-medium text-2xl text-center">{{conv["name"]}}</div>
   <div
     id="chat-window"
-    class="flex-1 bg-gray-50 rounded-lg shadow-inner overflow-y-scroll p-4 min-h flex-1"
+    class="flex-1 bg-gray-50 rounded-lg shadow-inner overflow-y-scroll p-4 flex-1 max-h-[500px]"
   >
     {% for msg in messages%} {%if msg.sender_id == user_id%}
     <div class="p-3 bg-[#9798be] w-2/5 rounded-lg ml-auto shadow-sm mb-2" ;>
+      <div class="font-bold text-sm mb-1">{{msg.username}}</div>
       {{msg.content}}
     </div>
     {% else %}
     <div class="p-3 bg-white w-2/5 rounded-lg shadow-sm mb-2" ;>
+      <div class="font-bold text-sm mb-1">{{msg.username}}</div>
       {{msg.content}}
     </div>
     {%endif%} {%endfor%}

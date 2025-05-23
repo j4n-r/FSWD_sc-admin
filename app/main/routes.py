@@ -20,7 +20,7 @@ def chat(id):
     for row in conv:
         print(row)
     messages = query_db(
-        "SELECT * FROM messages WHERE conversation_id = ? ORDER BY sent_from_server",
+        "SELECT * FROM messages m JOIN users u ON m.sender_id==u.id WHERE conversation_id = ? ORDER BY sent_from_server",
         [conv["id"]],
     )
     print(messages[0]["sender_id"])
