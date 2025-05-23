@@ -1,11 +1,21 @@
 {% extends "base.html" %} {% block title %}chat{% endblock %} {% block head %}
 {{ super() }} {% endblock %} {% block content %}
-<div class="h-full flex flex-col gap-4 p-4">
+<div class="flex-1 flex-col gap-4 p-4">
   <div class="font-medium text-2xl text-center">{{conv["name"]}}</div>
   <div
     id="chat-window"
-    class="flex-1 bg-gray-50 rounded-lg shadow-inner p-4 overflow-y-auto min-h-[500px]"
-  ></div>
+    class="flex-1 bg-gray-50 rounded-lg shadow-inner overflow-y-scroll p-4 min-h flex-1"
+  >
+    {% for msg in messages%} {%if msg.sender_id == user_id%}
+    <div class="p-3 bg-[#9798be] w-2/5 rounded-lg ml-auto shadow-sm mb-2" ;>
+      {{msg.content}}
+    </div>
+    {% else %}
+    <div class="p-3 bg-white w-2/5 rounded-lg shadow-sm mb-2" ;>
+      {{msg.content}}
+    </div>
+    {%endif%} {%endfor%}
+  </div>
 
   <form id="chat-form" class="flex gap-2">
     <input
@@ -44,7 +54,7 @@
   });
 
   function connectWs() {
-    ws = new WebSocket("ws://192.168.0.240:8080");
+    ws = new WebSocket("ws://0.0.0.0:8080");
 
     ws.onopen = (event) => {
       console.log("OPEN", event);

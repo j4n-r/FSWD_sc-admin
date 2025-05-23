@@ -1,6 +1,6 @@
 import json
 
-from flask import g, render_template
+from flask import g, render_template, session
 
 from app.auth import login_required
 from app.db import get_db, query_db
@@ -17,7 +17,19 @@ def hello():
 @main_bp.route("/chat/<string:id>")
 def chat(id):
     conv = query_db("SELECT * FROM conversations WHERE id = ?", [id], one=True)
-    return render_template("main/chat_id.html", conv=conv)
+    for row in conv:
+        print(row)
+    messages = query_db(
+        "SELECT * FROM messages WHERE conversation_id = ? ORDER BY sent_from_server",
+        [conv["id"]],
+    )
+    print(messages[0]["sender_id"])
+    return render_template(
+        "main/chat_id.html",
+        conv=conv,
+        messages=messages,
+        user_id=session.get("user_id"),
+    )
 
 
 @main_bp.route("/conversations")
