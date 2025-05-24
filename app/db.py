@@ -97,6 +97,7 @@ def add_default_users():
             "email": "admin@admin.com",
             "username": "admin",
             "password": "admin",
+            "role": "admin",
             "name": "admin",
         },
         {
@@ -104,6 +105,7 @@ def add_default_users():
             "email": "test@test.com",
             "username": "test",
             "password": "test",
+            "role": "user",
             "name": "test",
         },
     ]
@@ -113,13 +115,14 @@ def add_default_users():
         try:
             query_db(
                 """
-                INSERT INTO users (id, email, username, password, name)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO users (id, email, username,role, password, name)
+                VALUES (?, ?, ?, ?, ?,?)
                 """,
                 (
                     user["id"],
                     user["email"],
                     user["username"],
+                    user["role"],
                     generate_password_hash(user["password"]),
                     user["name"],
                 ),

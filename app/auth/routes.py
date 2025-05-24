@@ -68,7 +68,7 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
         error = None
-        user = query_db("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+        user = query_db("SELECT * FROM users WHERE email = ?", [email], one=True)
 
         if user is None:
             error = "Incorrect email."
@@ -78,6 +78,7 @@ def login():
         if error is None:
             session.clear()
             session["user_id"] = user["id"]
+            session['role'] = user['role'] 
             current_app.logger.info("%s logged in", user["email"])
             return redirect("/")
 

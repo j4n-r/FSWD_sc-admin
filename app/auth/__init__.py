@@ -1,6 +1,6 @@
 import functools
 
-from flask import Blueprint, g, redirect, session, url_for
+from flask import Blueprint, g, redirect, session, url_for, flash
 
 from app.db import get_db
 
@@ -29,5 +29,15 @@ def login_required(view):
 
     return wrapped_view
 
+def role_required(role):
+    def decorator(view):
+        @functools.wraps(view)
+        def wrapped_view(*args, **kwargs):
+            if session.get('role') != role:
+                flash("You do not have the needed permissons for this route", "error")
+                return redirect(url_for('main.home'))
+            return view(*args, **kwargs)
+        return wrapped_view
+    return decorator
 
 from . import routes  # noqa: E402

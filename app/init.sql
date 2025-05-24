@@ -3,6 +3,7 @@ CREATE TABLE users (
   email TEXT UNIQUE NOT NULL,
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
+  role TEXT NOT NULL CHECK(role in ('admin', 'user')),
   emailVerified INTEGER ,
   name TEXT,
   image TEXT,

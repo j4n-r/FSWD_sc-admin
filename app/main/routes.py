@@ -2,7 +2,7 @@ import json
 
 from flask import g, redirect, render_template, session, url_for
 
-from app.auth import login_required
+from app.auth import login_required, role_required
 from app.db import get_db, query_db
 
 from . import main_bp
@@ -58,3 +58,14 @@ def conversation(id):
     for user in users:
         print(user["username"])
     return render_template("main/conversations_id.html", conv=conv, users=users)
+
+
+@main_bp.route("/users")
+@role_required("admin")
+@login_required
+def users():
+    # conversations = query_db("SELECT * from conversations")
+    # print(conversations[0]["id"])
+    return render_template(
+        "main/users.html",
+    )
