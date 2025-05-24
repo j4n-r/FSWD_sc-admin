@@ -61,7 +61,7 @@ def conversation(id):
     conv = query_db("SELECT * from conversations WHERE id = ?", [id], one=True)
     users = query_db(
         """
-        SELECT cm.role,u.username, u.email c FROM conversation_members cm
+        SELECT cm.role,u.username, u.email FROM conversation_members cm
         JOIN users u ON u.id=cm.user_id
         WHERE conversation_id = ?
         ORDER BY cm.role desc
@@ -79,3 +79,11 @@ def conversation(id):
 def users():
     users = query_db("SELECT * from users WHERE id != ? ", [session.get("user_id")])
     return render_template("main/users.html", users=users)
+
+
+@main_bp.route("/groups")
+@role_required("admin")
+@login_required
+def groups():
+    groups = query_db("SELECT * from conversations WHERE type = 'group'")
+    return render_template("main/groups.html", groups=groups)

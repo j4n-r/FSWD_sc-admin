@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" class="h-full">
+
+<html lang="en" class="h-full text-gray-700">
   <head>
     {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,25 +13,29 @@
       <aside class="w-64 bg-white shadow-xl h-full flex flex-col">
         <!-- Logo/App Name -->
         <div class="p-6">
-          <h1 class="text-xl font-bold">My App</h1>
+          <h1 class="text-xl font-bold">Team Chat</h1>
         </div>
 
         <!-- Navigation Links -->
-        <nav class="flex-1 p-4">
+        <nav class="flex-1 p-4 border-top">
           <div class="space-y-3">
             <a
               href="/conversations"
               class="block px-4 py-2 hover:bg-gray-100 rounded-md"
               >Chats</a
             >
+            {% if g.user["role"] == "admin"%}
             <a
               href="/users"
               class="block px-4 py-2 hover:bg-gray-100 rounded-md"
-              >List Users</a
+              >Users</a
             >
-            <a href="/chat" class="block px-4 py-2 hover:bg-gray-100 rounded-md"
-              >Irgenwas anderes</a
+            <a
+              href="/groups"
+              class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+              >Groups</a
             >
+            {%endif%}
           </div>
         </nav>
 
@@ -69,7 +74,7 @@
           messages %} {% for category, message in messages %}
           <div
             id="message-alert"
-            class="bg-white border-l-4 p-4 rounded shadow-lg max-w-sm {% if category == 'success' %}border-green-500 text-green-700{% endif %} {% if category == 'error' %}border-red-500 text-red-700{% endif %} {% if category == 'warning' %}border-yellow-500 text-yellow-700{% endif %} {% if category == 'info' %}border-blue-500 text-blue-700{% endif %}"
+            class="bg-white border-l-4 p-4 rounded shadow-lg max-w-sm {% if category == 'success' %}border-emerald-500 text-emerald-700{% endif %} {% if category == 'error' %}border-red-500 text-red-500{% endif %} {% if category == 'warning' %}border-amber-500 text-amber-500{% endif %} {% if category == 'info' %}border-cyan-500 text-cyan-500{% endif %}"
           >
             <div class="flex justify-between items-center">
               <span class="text-md font-semibold">{{ message }}</span>

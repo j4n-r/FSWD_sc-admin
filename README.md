@@ -76,11 +76,3 @@ https://tailwindcss.com/docs/installation/play-cdn
 | Text Secondary | `gray-500` | `#6b7280` | ![#6b7280](https://placehold.co/20x20/6b7280/6b7280.png) |
 | Text Primary | `gray-700` | `#374151` | ![#374151](https://placehold.co/20x20/374151/374151.png) |
 | Text Dark | `gray-900` | `#111827` | ![#111827](https://placehold.co/20x20/111827/111827.png) |
-
-## Status Colors
-| Color Name | Tailwind Class | Hex Code | Preview |
-|------------|----------------|----------|---------|
-| Success | `emerald-600` | `#059669` | ![#059669](https://placehold.co/20x20/059669/059669.png) |
-| Warning | `amber-600` | `#d97706` | ![#d97706](https://placehold.co/20x20/d97706/d97706.png) |
-| Error | `red-600` | `#dc2626` | ![#dc2626](https://placehold.co/20x20/dc2626/dc2626.png) |
-| Info | `sky-600` | `#0284c7` | ![#0284c7](https://placehold.co/20x20/0284c7/0284c7.png) |

@@ -12,26 +12,27 @@
         <div class="flex items-center">
           <div class="flex-grow">
             <div class="flex justify-between items-baseline">
-              <h2 class="text-lg font-semibold text-gray-800">
+              <h2 class="text-lg font-semibold text-gray-900">
                 {% if conv['name'] %} {{ conv['name'] }} {% else %} {% if
                 conv['type'] == 'dm' %} Direct Message {% else %} Group Chat {%
                 endif %} {% endif %}
               </h2>
-              <span class="text-xs text-gray-500">
-                {{ conv['updated_at'].split(' ')[0] if ' ' in conv['updated_at']
-                else conv['updated_at'] }}
-              </span>
             </div>
 
-            <div class="flex items-center mt-1">
+            <div class="flex items-center gap-2 mt-1">
               <span
-                class="bg-{{ 'blue' if conv['type'] == 'dm' else 'green' }}-100 text-{{ 'blue' if conv['type'] == 'dm' else 'green' }}-800 text-xs px-2 py-0.5 rounded"
+                class="{{'bg-blue-300 text-gray-900' if conv['type'] == 'dm' else 'bg-violet-300 text-gray-900' }} text-xs px-2 py-0.5 rounded"
               >
                 {{ 'Direct Message' if conv['type'] == 'dm' else 'Group' }}
               </span>
 
+              <span class="text-xs text-gray-500">
+                {{ conv['updated_at'].split(' ')[0] if ' ' in conv['updated_at']
+                else conv['updated_at'] }}
+              </span>
+
               {% if conv['description'] %}
-              <p class="text-sm text-gray-600 ml-2 truncate">
+              <p class="text-sm ml-2 truncate text-gray-500">
                 {{ conv['description'] }}
               </p>
               {% endif %}

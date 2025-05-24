@@ -1,95 +1,109 @@
-{% extends "base.html" %} {% block title %}Users{% endblock %} {% block head
+{% extends "base.html" %} {% block title %}Groups{% endblock %} {% block head
 %}{{ super() }}{% endblock %} {% block content %}
 <div class="max-w-4xl mx-auto p-6">
   <div class="flex flex-col">
-    <h1 class="text-3xl font-bold text-gray-900">Users</h1>
+    <h1 class="text-3xl font-bold text-gray-900">Groups</h1>
     <div class="text-sm ml-auto text-gray-500 m-2">
-      Total: {{ users|length }} users
+      Total: {{ groups|length }} groups
     </div>
   </div>
 
   <div class="grid grid-cols-1 gap-4">
-    {% for user in users %}
+    {% for group in groups %}
     <div
-      class="bg-white rounded-lg shadow border border-gray-200 p-4 hover:shadow-md transition-all hover:border-blue-300"
+      class="bg-white rounded-lg shadow border border-gray-300 p-4 hover:shadow-md hover:border-blue-300"
     >
       <div class="flex items-center">
-        <!-- user image/ icon  -->
+        <!-- Group image/icon -->
         <div class="flex-shrink-0 mr-4">
-          {% if user['image'] %}
+          {% if group['image'] %}
           <img
-            src="{{ user['image'] }}"
-            alt="{{ user['username'] }}"
+            src="{{ group['image'] }}"
+            alt="{{ group['name'] or 'Group' }}"
             class="w-12 h-12 rounded-full object-cover"
           />
           {% else %}
           <div
-            class="p-3 rounded-full kkjj flex items-center justify-center bg-gray-200"
+            class="p-3 rounded-full flex items-center justify-center bg-gray-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-user-icon lucide-user"
+              class="lucide lucide-users-icon lucide-users"
             >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <circle cx="9" cy="7" r="4" />
             </svg>
           </div>
           {% endif %}
         </div>
 
-        <!-- username -->
+        <!-- Group info -->
         <div class="flex-grow">
           <div class="flex justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">
-                {{ user['username'] }}
+                {{ group['name'] or 'Unnamed Group' }}
               </h2>
+              {% if group['description'] %}
+              <p class="text-sm text-gray-500 mt-1">
+                {{ group['description'] }}
+              </p>
+              {% endif %}
             </div>
           </div>
 
           <div class="flex items-center mt-2 space-x-3">
-            <!-- Role -->
             <span
-              class="{{'bg-blue-300 text-gray-700' if user['role'] == 'user' else 'bg-violet-300 text-gray-700' }} text-xs px-2 py-0.5 rounded font-medium"
+              class="bg-violet-300 text-gray-900 text-xs px-2 py-0.5 rounded font-medium"
             >
-              {{ user['role'].title() }}
+              Group
             </span>
-
-            <!-- email verify -->
-            {% if user['emailVerified'] %}
-            <span
-              class="bg-gray-100 text-emerald-500 text-xs px-2 py-0.5 rounded"
-            >
-              Verified
-            </span>
-            {% else %}
-            <span class="bg-gray-100 text-gray-700 text-xs px-2 py-0.5 rounded">
-              Unverified
-            </span>
-            {% endif %}
-            <!-- Email -->
-            <p class="text-sm text-gray-700 truncate">{{ user['email'] }}</p>
             <div class="text-xs text-gray-500">
-              Joined {{ user['created_at'].split(' ')[0] if ' ' in
-              user['created_at'] else user['created_at'] }}
+              Created {{ group['created_at'].split(' ')[0] if ' ' in
+              group['created_at'] else group['created_at'] }}
             </div>
           </div>
         </div>
 
-        <!-- Buttons -->
+        <!-- Action buttons -->
         <div class="flex items-center space-x-2 ml-4">
-          <!-- Delete user -->
+          <!-- View/Edit group -->
           <button
-            class="text-blue-600 p-2 rounded hover:bg-blue-50"
-            title="Edit User"
+            class="text-blue-500 p-2 rounded hover:bg-blue-50"
+            title="Edit Group"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-trash-icon lucide-trash"
+            >
+              <path d="M3 6h18" />
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+            </svg>
+          </button>
+
+          <!-- Delete  -->
+          <button
+            class="text-red-500 p-2 rounded hover:bg-red-50 transition-colors"
+            title="Delete Group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -112,11 +126,10 @@
             </svg>
           </button>
 
-          <!-- edit user -->
+          <!-- View  -->
           <button
-            class="text-red-500 p-2 rounded hover:bg-red-50 transition-colors"
-            title="Delete User"
-            onclick="confirmDelete('{{ user['id'] }}', '{{ user['name'] or user['username'] }}')"
+            class="text-emerald-500 p-2 rounded hover:bg-emerald-50"
+            title="View Members"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -128,16 +141,17 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-trash-icon lucide-trash"
+              class="lucide lucide-users-icon lucide-users"
             >
-              <path d="M3 6h18" />
-              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <circle cx="9" cy="7" r="4" />
             </svg>
           </button>
 
-          <!-- maybe create a new priate chat sometime -->
-          <div class="text-gray-500">
+          <!-- Navigate arrow -->
+          <div class="text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -148,7 +162,7 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-chevron-right-icon lucide-chevron-right"
+              class="lucide lucide-chevron-right"
             >
               <path d="m9 18 6-6-6-6" />
             </svg>
@@ -156,7 +170,7 @@
         </div>
       </div>
     </div>
-    {% endfor %} {% if not users %}
+    {% endfor %} {% if not groups %}
     <div class="text-center py-12">
       <div class="text-gray-400 mb-4">
         <svg
@@ -174,12 +188,18 @@
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
           <circle cx="9" cy="7" r="4" />
           <path d="m22 21-3-3m0 0-3-3m3 3 3 3m-3-3-3 3" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
       </div>
-      <h3 class="text-lg font-medium text-gray-900 mb-2">
-        No other users found
-      </h3>
-      <p class="text-gray-500">You are the only user in the system.</p>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">No groups found</h3>
+      <p class="text-gray-500">
+        There are no groups in the system yet. Create one to get started.
+      </p>
+      <button
+        class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+      >
+        Create New Group
+      </button>
     </div>
     {% endif %}
   </div>
