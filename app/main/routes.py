@@ -1,6 +1,6 @@
 import json
 
-from flask import g, render_template, session
+from flask import g, redirect, render_template, session, url_for
 
 from app.auth import login_required
 from app.db import get_db, query_db
@@ -11,7 +11,8 @@ from . import main_bp
 @main_bp.route("/")
 @login_required
 def home():
-    return render_template("main/home.html")
+    # return render_template("main/home.html")
+    return redirect(url_for("main.conversations"))  # redirect for now bc no dashboard
 
 
 @main_bp.route("/chat/<string:id>")

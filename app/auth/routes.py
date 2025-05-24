@@ -1,3 +1,5 @@
+import uuid
+
 from flask import (
     current_app,
     flash,
@@ -27,27 +29,35 @@ def register():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
+        username = request.form["username"]
         db = get_db()
         error = None
 
         if not email:
             error = "Email is required."
+            current_app.logger.warn(error)
         elif not password:
             error = "Password is required."
-
+            current_app.logger.warn(error)
         if error is None:
             try:
-                db.execute(
-                    "INSERT INTO users (email, password) VALUES (?, ?)",
-                    (email, generate_password_hash(password)),
+                query_db(
+                    "INSERT INTO users (id,email,username, password) VALUES (?,?,?, ?)",
+                    (
+                        str(uuid.uuid4()),
+                        email,
+                        username,
+                        generate_password_hash(password),
+                    ),
                 )
-                db.commit()
-            except db.IntegrityError:
-                error = f"User {email} is already registered."
+            except Exception as e:
+                current_app.logger.warn(e)
+                error = "Something went wrong"
             else:
+                flash("Succesfully registered new account, please login", "register_success")
                 return redirect(url_for("auth.login"))
 
-        flash(error)
+        flash(error, "register_error")
 
     return render_template("auth/register.html")
 

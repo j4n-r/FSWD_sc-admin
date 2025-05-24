@@ -47,10 +47,29 @@ content %}
         </div>
       </div>
 
-      <button type="submit" class="bg-gray-300 p-2 w-full rounded-xl mt-6">
+      <button
+        type="submit"
+        class="bg-gray-300 p-2 w-full rounded-xl mt-6 hover:bg-blue-600 hover:text-white"
+      >
         Sign in
       </button>
+
+      <a
+        href="/auth/register"
+        class="bg-gray-300 p-2 w-full rounded-xl flex items-center justify-center text-center hover:bg-blue-600 hover:text-white"
+      >
+        Register
+      </a>
     </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="my-4 space-y-2">
+      {% for register_success, message in messages %}
+      <div class="text-green-400 text-center">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
   </div>
 </div>
 

@@ -1,5 +1,4 @@
 import sqlite3
-import uuid
 from datetime import datetime
 
 import click
@@ -108,9 +107,10 @@ def add_default_users():
             print(error)
 
 
-# helper function
 def query_db(query, args=(), one=False):
-    cur = get_db().execute(query, args)
+    db = get_db()
+    cur = db.execute(query, args)
+    db.commit()
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
