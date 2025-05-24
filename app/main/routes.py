@@ -10,11 +10,12 @@ from . import main_bp
 
 @main_bp.route("/")
 @login_required
-def hello():
+def home():
     return render_template("main/home.html")
 
 
 @main_bp.route("/chat/<string:id>")
+@login_required
 def chat(id):
     conv = query_db("SELECT * FROM conversations WHERE id = ?", [id], one=True)
     for row in conv:
@@ -33,6 +34,7 @@ def chat(id):
 
 
 @main_bp.route("/conversations")
+@login_required
 def conversations():
     conversations = query_db("SELECT * from conversations")
     print(conversations[0]["id"])
@@ -40,6 +42,7 @@ def conversations():
 
 
 @main_bp.route("conversations/<string:id>")
+@login_required
 def conversation(id):
     conv = query_db("SELECT * from conversations WHERE id = ?", [id], one=True)
     users = query_db(
