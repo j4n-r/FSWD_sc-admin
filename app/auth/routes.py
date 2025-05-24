@@ -83,6 +83,7 @@ def login():
             session.clear()
             session["user_id"] = user["id"]
             session["role"] = user["role"]
+            session["image"] = user["image"]
             current_app.logger.info("%s logged in", user["email"])
             return redirect("/")
 
