@@ -64,8 +64,5 @@ def conversation(id):
 @role_required("admin")
 @login_required
 def users():
-    # conversations = query_db("SELECT * from conversations")
-    # print(conversations[0]["id"])
-    return render_template(
-        "main/users.html",
-    )
+    users = query_db("SELECT * from users WHERE id != ? ", [session.get("user_id")])
+    return render_template("main/users.html", users=users)
