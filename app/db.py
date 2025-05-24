@@ -36,7 +36,7 @@ def init_db():
         db = get_db()
 
         try:
-            with current_app.open_resource("schema.sql") as f:
+            with current_app.open_resource("init.sql") as f:
                 db.executescript(f.read().decode("utf8"))
         except Exception as e:
             print(e)
@@ -53,6 +53,29 @@ def init_db_command():
     click.echo(res)
 
 
+def drop_db():
+    """Run drop.sql"""
+    try:
+        db = get_db()
+
+        try:
+            with current_app.open_resource("drop.sql") as f:
+                db.executescript(f.read().decode("utf8"))
+        except Exception as e:
+            print(e)
+        add_default_users()
+        return "Dropped DB"
+    except Exception:
+        raise Exception
+
+
+@click.command("drop-db")
+def drop_db_command():
+    """Register command `flask drop-db`"""
+    res = drop_db()
+    click.echo(res)
+
+
 sqlite3.register_converter(
     "timestamp", lambda v: datetime.fromisoformat(v.decode())
 )  # unixtimestamps
@@ -64,6 +87,7 @@ def init_app(app):
     """
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(drop_db_command)
 
 
 def add_default_users():
