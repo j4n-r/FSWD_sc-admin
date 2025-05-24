@@ -1,7 +1,8 @@
 import os
-from logging.config import dictConfig
 from datetime import timedelta
+from logging.config import dictConfig
 
+from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -12,32 +13,37 @@ from app.main import main_bp
 
 
 def create_app(test_config=None):
-    dictConfig({
-        'version': 1,
-        'formatters': {'default': {
-            'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-        }},
-        'handlers': {'wsgi': {
-            'class': 'logging.StreamHandler',
-            'stream': 'ext://flask.logging.wsgi_errors_stream',
-            'formatter': 'default'
-        }},
-        'root': {
-            'level': 'INFO',
-            'handlers': ['wsgi']
+    load_dotenv()
+    dictConfig(
+        {
+            "version": 1,
+            "formatters": {
+                "default": {
+                    "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+                }
+            },
+            "handlers": {
+                "wsgi": {
+                    "class": "logging.StreamHandler",
+                    "stream": "ext://flask.logging.wsgi_errors_stream",
+                    "formatter": "default",
+                }
+            },
+            "root": {"level": "INFO", "handlers": ["wsgi"]},
         }
-    })
+    )
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
 
     CORS(app)
-
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-    DATABASE_PATH = os.path.abspath(
-        os.path.join(BASE_DIR, "..", "..", "instance", "dev.sqlite3")
-    )
-    app.config.from_mapping(SECRET_KEY="dev", DATABASE=DATABASE_PATH)
+    DB_URL = os.getenv("DB_URL")
+    if DB_URL == None:
+        DB_URL = "instance/dev.sqlite3"
+
+    app.logger.info(f"DB_URL: {DB_URL}")
+    app.config.from_mapping(SECRET_KEY="dev", DATABASE=DB_URL)
     # Setup the Flask-JWT-Extended extension
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
     app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)

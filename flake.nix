@@ -22,6 +22,7 @@
                 flask
                 flask-jwt-extended
                 flask-cors
+                python-dotenv
               ]
             ))
             pkgs.sqlite
