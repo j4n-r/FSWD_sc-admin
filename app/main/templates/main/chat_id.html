@@ -92,7 +92,7 @@ super() }}{% endblock %} {% block content %}
       ws.send(
         JSON.stringify({
           messageType: "IdMessage",
-          senderId: "{{g.user['id']}}"
+          senderId: "{{g.user['id']}}",
           convId: "{{conv['id']}}",
           timestamp: new Date(),
         }),
@@ -109,7 +109,7 @@ super() }}{% endblock %} {% block content %}
       const msgContainer = document.createElement("div");
       const msgDiv = document.createElement("div");
 
-      if (data.meta.senderId === user.id) {
+      if (data.meta.senderId === "{{g.user['id']}}") {
         // sender is the same as the currently logged in user
         msgContainer.className = "flex justify-end mb-3";
         msgDiv.className =
@@ -122,14 +122,14 @@ super() }}{% endblock %} {% block content %}
 
       const nameElement = document.createElement("div");
       nameElement.className =
-        data.meta.senderId === user.id
+        data.meta.senderId === "{{g.user['id']}}"
           ? "font-medium text-xs mb-1 opacity-75"
           : "font-medium text-xs mb-1 text-gray-600";
       nameElement.textContent = userName;
 
       const messageContent = document.createElement("div");
       messageContent.className =
-        data.meta.senderId === user.id ? "" : "text-gray-800";
+        data.meta.senderId === "{{g.user['id']}}" ? "" : "text-gray-800";
       messageContent.textContent = msg;
 
       msgDiv.appendChild(nameElement);
@@ -158,7 +158,7 @@ super() }}{% endblock %} {% block content %}
       messageType: "ChatMessage",
       payload: {
         content: messageText,
-        displayName: user.name,
+        displayName: "{{g.user['username']}}",
       },
       meta: {
         conversationId: "{{conv['id']}}",

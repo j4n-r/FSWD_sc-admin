@@ -82,6 +82,7 @@ def login():
         if error is None:
             session.clear()
             session["user_id"] = user["id"]
+            session["username"] = user["username"]
             session["role"] = user["role"]
             session["image"] = user["image"]
             current_app.logger.info("%s logged in", user["email"])
