@@ -1,6 +1,6 @@
 import json
 
-from flask import g, redirect, render_template, session, url_for
+from flask import flash, g, redirect, render_template, session, url_for
 
 from app.auth import login_required, role_required
 from app.db import get_db, query_db
@@ -37,8 +37,21 @@ def chat(id):
 @main_bp.route("/conversations")
 @login_required
 def conversations():
-    conversations = query_db("SELECT * from conversations")
-    print(conversations[0]["id"])
+    if session.get("role") == "admin":
+        conversations = query_db("SELECT * from conversations")
+    else:
+        conversations = query_db(
+            """
+        SELECT * FROM conversations c
+        JOIN conversation_members cm
+        ON c.id = cm.conversation_id
+        WHERE cm.user_id = ?
+        """,
+            [session.get("user_id")],
+        )
+    if not conversations:
+        flash("No chats found", "info")
+
     return render_template("main/conversations.html", conversations=conversations)
 
 

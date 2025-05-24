@@ -92,7 +92,7 @@ super() }}{% endblock %} {% block content %}
       ws.send(
         JSON.stringify({
           messageType: "IdMessage",
-          senderId: user.id,
+          senderId: "{{g.user['id']}}"
           convId: "{{conv['id']}}",
           timestamp: new Date(),
         }),

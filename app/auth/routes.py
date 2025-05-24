@@ -42,11 +42,12 @@ def register():
         if error is None:
             try:
                 query_db(
-                    "INSERT INTO users (id,email,username, password) VALUES (?,?,?, ?)",
+                    "INSERT INTO users (id,email,username,role ,password) VALUES (?,?,?, ?,?)",
                     (
                         str(uuid.uuid4()),
                         email,
                         username,
+                        "user",
                         generate_password_hash(password),
                     ),
                 )
@@ -54,7 +55,10 @@ def register():
                 current_app.logger.warn(e)
                 error = "Something went wrong"
             else:
-                flash("Succesfully registered new account, please login", "register_success")
+                flash(
+                    "Succesfully registered new account, please login",
+                    "register_success",
+                )
                 return redirect(url_for("auth.login"))
 
         flash(error, "register_error")
@@ -78,7 +82,7 @@ def login():
         if error is None:
             session.clear()
             session["user_id"] = user["id"]
-            session['role'] = user['role'] 
+            session["role"] = user["role"]
             current_app.logger.info("%s logged in", user["email"])
             return redirect("/")
 
