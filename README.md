@@ -45,8 +45,6 @@ https://tailwindcss.com/docs/installation/play-cdn
 ### Style Guide
 # Color Palette
 
-# Color Palette
-
 ## Primary Colors
 | Color Name | Tailwind Class | Hex Code | Preview |
 |------------|----------------|----------|---------|
@@ -66,6 +64,8 @@ https://tailwindcss.com/docs/installation/play-cdn
 |------------|----------------|----------|---------|
 | Success | `emerald-500` | `#10b981` | ![#10b981](https://placehold.co/20x20/10b981/10b981.png) |
 | Warning | `amber-500` | `#f59e0b` | ![#f59e0b](https://placehold.co/20x20/f59e0b/f59e0b.png) |
+| Error | `red-500` | `#ef4444` | ![#ef4444](https://placehold.co/20x20/ef4444/ef4444.png) |
+| Info | `cyan-500` | `#06b6d4` | ![#06b6d4](https://placehold.co/20x20/06b6d4/06b6d4.png) |
 
 ## Neutral Colors
 | Color Name | Tailwind Class | Hex Code | Preview |
