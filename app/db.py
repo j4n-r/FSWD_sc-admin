@@ -87,7 +87,7 @@ def add_default_users():
 
     for user in users:
         try:
-            db.execute(
+            query_db(
                 """
                 INSERT INTO users (id, email, username, password, name)
                 VALUES (?, ?, ?, ?, ?)
@@ -100,11 +100,10 @@ def add_default_users():
                     user["name"],
                 ),
             )
-            db.commit()
             print(f"Default user {user['email']} created.")
-        except db.IntegrityError:
+        except Exception as e:
             error = f"User {user['email']} is already registered."
-            print(error)
+            print(e)
 
 
 def query_db(query, args=(), one=False):

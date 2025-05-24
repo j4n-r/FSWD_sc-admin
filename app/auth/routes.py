@@ -67,9 +67,8 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        db = get_db()
         error = None
-        user = db.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+        user = query_db("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
 
         if user is None:
             error = "Incorrect email."
