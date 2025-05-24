@@ -34,6 +34,9 @@ https://flask.palletsprojects.com/en/stable/tutorial/database/
 ## ChatGPT
 https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
 
+## T3
+https://t3.chat/chat/e5cb81d8-228a-4729-83fa-8edefe76037a
+
 ## CSS/Styling
 https://tailwindcss.com/plus/ui-blocks/application-ui/
 https://flowbite.com/
@@ -49,3 +52,4 @@ https://github.com/corydolphin/flask-cors/issues/292
 
 
 https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
