@@ -1,6 +1,6 @@
 import json
 
-from flask import flash, g, redirect, render_template, session, url_for
+from flask import flash, g, redirect, render_template, request, session, url_for
 
 from app.auth import login_required, role_required
 from app.db import get_db, query_db
@@ -71,6 +71,18 @@ def conversation(id):
     for user in users:
         print(user["username"])
     return render_template("main/conversations_id.html", conv=conv, users=users)
+
+
+@main_bp.route("groups/create")
+@login_required
+@role_required("admin")
+def create_conversation():
+    if request.method == "POST":
+        
+        return redirect(url_for("groups"))
+    else:
+        users = query_db("SELECT * FROM USERS")
+        return render_template("main/groups_create.html", users=users)
 
 
 @main_bp.route("/users")
