@@ -85,13 +85,63 @@ def login():
             session["username"] = user["username"]
             session["role"] = user["role"]
             session["image"] = user["image"]
-            current_app.logger.info("%s logged in", user["email"])
+            current_app.logger.info("%s logged in as a user", user["email"])
             return redirect("/")
 
         current_app.logger.warn("%s", error)
         flash(error)
 
     return render_template("auth/login.html")
+
+
+@auth_bp.route("/guest", methods=("GET", "POST"))
+def guest():
+    if request.method == "POST":
+        email = request.form["email"]
+        username = request.form["username"]
+        error = None
+
+        if not email:
+            error = "Email is required."
+            current_app.logger.warning(error)
+        if error is None:
+            try:
+                query_db(
+                    "INSERT INTO users (id,email,username,role ) VALUES (?,?,?, ?)",
+                    (
+                        str(uuid.uuid4()),
+                        email,
+                        username,
+                        "guest",
+                    ),
+                )
+            except Exception as e:
+                current_app.logger.warning(e)
+                error = "Something went wrong"
+            else:
+                user = None
+                try:
+                    user = query_db(
+                        "SELECT * FROM users WHERE email = ?", [email], one=True
+                    )
+                except Exception as e:
+                    current_app.logger.error(e)
+                    flash("something went wrong")
+
+                session["user_id"] = user["id"]
+                session["username"] = user["username"]
+                session["role"] = user["role"]
+                session["image"] = user["image"]
+                current_app.logger.info("%s logged in as a guest", user["email"])
+                flash(
+                    "Succes",
+                    "register_success",
+                )
+                return redirect(url_for("main.home"))
+
+        flash(error, "register_error")
+
+    return render_template("auth/guest.html")
 
 
 @auth_bp.route("/logout")

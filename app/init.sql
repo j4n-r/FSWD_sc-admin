@@ -2,8 +2,8 @@ CREATE TABLE users (
   id  TEXT PRIMARY KEY NOT NULL, -- UUID as TEXT
   email TEXT UNIQUE NOT NULL,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  role TEXT NOT NULL CHECK(role in ('admin', 'user')),
+  password TEXT,
+  role TEXT NOT NULL CHECK(role in ('admin', 'user','guest')),
   emailVerified INTEGER ,
   name TEXT,
   image TEXT,
