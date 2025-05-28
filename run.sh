@@ -46,7 +46,7 @@ activate_venv() {
         echo "Please initialize python venv as $GIT_ROOT/venv directory"
         echo "run:"
         echo "python -m venv venv/"
-        source "$GIT_ROOT/venv/bin/activate"
+        echo "source $GIT_ROOT/venv/bin/activate"
         echo "pip install -r requirements.txt"
         exit 1
     else
