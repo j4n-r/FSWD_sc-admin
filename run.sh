@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-Blue='\033[0;34m' 
+BLUE='\033[0;34m' 
 NC='\033[0m' # No Color (reset)
 
 arg="$1"
@@ -12,17 +12,19 @@ OS=$(uname -s)
 
 SYSTEM=""
 
-if [[ "$OS_NAME" == "Darwin" && "$ARCH" == "arm64" ]]; then
+if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
     SYSTEM="aarch64-darwin"  #rust compile target is named aarch64-apple-darwin not arm64-...
-if [[ "$OS_NAME" == "Linux" && "$ARCH" == "x86_64" ]];then
+elif [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
     SYSTEM="x86_64-linux"
 else
-    echo "Only aarch64-darwin and x86_64-linux is supported you have: $ARCH-$OS"
+    echo "Only aarch64-Darwin and x86_64-Linux is supported you have: $ARCH-$OS"
+    exit 1
 fi
 
 DATABASE_URL=$(find "$GIT_ROOT" -name 'db.sqlite3' -print -quit)
-# in the flask app the same default is specified if no env var is set >>  `app/__init__.py:42` 
+# in the flask app the same default is specified if no env var is set >>  `app/__init__.py:42`
 DATABASE_URL_ENV=${DATABASE_URL:-"./instance/db.sqlite3"} 
+export DATABASE_URL="$DATABASE_URL_ENV"
 ws_pid=""
 flask_pid=""
 
@@ -46,7 +48,7 @@ if [[ "$arg" == "start" ]]; then
         exit 1
     fi
     echo "starting ws server"
-    export DATABASE_URL="$DATABASE_URL_ENV"
+    echo "$SYSTEM"
 
     "$GIT_ROOT/ws-server/lfsc-$SYSTEM" &
     ws_pid=$!
@@ -56,7 +58,7 @@ if [[ "$arg" == "start" ]]; then
     flask_pid=$! 
     echo "Flask server started (PID: $flask_pid)"
 
-    echo -e "${BLUE}Servers running press CTRL+C to quit${NC}"
+    echo -e "${BLUE}Servers started press CTRL+C to quit${NC}"
     wait
     exit 0
 elif [[ "$arg" == "reset" ]]; then
@@ -73,7 +75,7 @@ elif [[ "$arg" == "reset" ]]; then
     flask_pid=$!
     echo "Flask server started (PID: $flask_pid)"
 
-    echo -e "${BLUE}Servers running press CTRL+C to quit${NC}"
+    echo -e "${BLUE}Servers started press CTRL+C to quit${NC}"
     wait
     exit 0
 fi
