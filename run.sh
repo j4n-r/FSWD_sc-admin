@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BLUE='\033[0;34m'
+Blue='\033[0;34m' 
 NC='\033[0m' # No Color (reset)
 
 arg="$1"
@@ -15,7 +15,6 @@ ws_pid=""
 flask_pid=""
 
 cleanup() {
-    echo "Shutting down servers..."
     if [[ -n "$flask_pid" ]]; then # 
         kill $flask_pid 2>/dev/null
         echo "Flask server stopped"
