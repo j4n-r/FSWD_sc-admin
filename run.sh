@@ -7,21 +7,19 @@ set -e # exit on first error
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
-ARCH_RAW=$(uname -m)
-OS_RAW=$(uname -s)
+ARCH=$(uname -m)
+OS=$(uname -s)
 
-# lowercase
-ARCH="${ARCH_RAW,,}"
-OS_NAME="${OS_RAW,,}" 
+SYSTEM=""
 
-#rust compile target is named aarch64 not arm64
-if [[ "$OS_NAME" == "darwin" && "$ARCH" == "arm64" ]]; then
-    TARGET_ARCH="aarch64"
+if [[ "$OS_NAME" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    SYSTEM="aarch64-darwin"  #rust compile target is named aarch64-apple-darwin not arm64-...
+if [[ "$OS_NAME" == "Linux" && "$ARCH" == "x86_64" ]];then
+    SYSTEM="x86_64-linux"
 else
-    TARGET_ARCH="$ARCH"
+    echo "Only aarch64-darwin and x86_64-linux is supported you have: $ARCH-$OS"
 fi
 
-SYSTEM="$TARGET_ARCH-$OS_NAME"
 DATABASE_URL=$(find "$GIT_ROOT" -name 'db.sqlite3' -print -quit)
 # in the flask app the same default is specified if no env var is set >>  `app/__init__.py:42` 
 DATABASE_URL_ENV=${DATABASE_URL:-"./instance/db.sqlite3"} 
