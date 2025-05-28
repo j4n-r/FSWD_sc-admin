@@ -26,6 +26,20 @@ TODO: add instructions for websocket server and env variables
 
 TODO: Test venv installation (not using flakes)
 
+##### Start app
+
+``` bash
+ ./run.sh start
+```
+
+##### Reset database
+
+``` bash
+ ./run.sh reset
+```
+
+
+### Flask commands
 ##### Init db 
 ```
 flask init-db

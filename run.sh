@@ -29,7 +29,7 @@ ws_pid=""
 flask_pid=""
 
 cleanup() {
-    if [[ -n "$flask_pid" ]]; then # 
+    if [[ -n "$flask_pid" ]]; then 
         kill $flask_pid 2>/dev/null
         echo "Flask server stopped"
     fi
@@ -40,32 +40,18 @@ cleanup() {
     exit 0
 }
 
-trap cleanup SIGINT SIGTERM EXIT
-
-if [[ "$arg" == "start" ]]; then
-    if [[ -z "$DATABASE_URL" ]]; then
-        echo "No Database named db.sqlite3 found please run  './run.sh reset'"
-        exit 1
+activate_venv() {
+    if [[ ! -d "$GIT_ROOT/venv" ]]; then
+        echo "Please initialize python venv as $GIT_ROOT/venv directory"
+        echo "run:"
+        echo "python -m venv venv/"
+        echo "pip install -r requirements.txt"
+    else
+        source "$GIT_ROOT/venv"
     fi
-    echo "starting ws server"
-    echo "$SYSTEM"
+}
 
-    "$GIT_ROOT/ws-server/lfsc-$SYSTEM" &
-    ws_pid=$!
-    echo "Ws ws-server started (PID: $ws_pid)"
-
-    flask run --debug &
-    flask_pid=$! 
-    echo "Flask server started (PID: $flask_pid)"
-
-    echo -e "${BLUE}Servers started press CTRL+C to quit${NC}"
-    wait
-    exit 0
-elif [[ "$arg" == "reset" ]]; then
-    echo "resetting db starting ws server"
-    mkdir -p ./instance
-    flask drop-db
-    flask init-db
+start_servers() {
     "$GIT_ROOT/ws-server/lfsc-$SYSTEM" &
 
     ws_pid=$!
@@ -78,6 +64,23 @@ elif [[ "$arg" == "reset" ]]; then
     echo -e "${BLUE}Servers started press CTRL+C to quit${NC}"
     wait
     exit 0
+}
+
+trap cleanup SIGINT SIGTERM EXIT
+
+if [[ "$arg" == "start" ]]; then
+    if [[ -z "$DATABASE_URL" ]]; then
+        echo "No Database named db.sqlite3 found please run  './run.sh reset'"
+        exit 1
+    fi
+    start_servers
+
+elif [[ "$arg" == "reset" ]]; then
+    echo "resetting db starting ws server"
+    mkdir -p ./instance
+    flask drop-db
+    flask init-db
+    start_servers
 fi
 
 echo "command usage: ./run.sh start|reset"
