@@ -3,6 +3,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color (reset)
 
 arg="$1"
+venv="$2" # only option is novenv 
 set -e # exit on first error
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
@@ -46,6 +47,7 @@ activate_venv() {
         echo "run:"
         echo "python -m venv venv/"
         echo "pip install -r requirements.txt"
+        exit 1
     else
         source "$GIT_ROOT/venv"
     fi
@@ -68,6 +70,10 @@ start_servers() {
 
 trap cleanup SIGINT SIGTERM EXIT
 
+if [[ "$venv" != "novenv" ]]; then
+    activate_venv
+fi
+
 if [[ "$arg" == "start" ]]; then
     if [[ -z "$DATABASE_URL" ]]; then
         echo "No Database named db.sqlite3 found please run  './run.sh reset'"
@@ -84,4 +90,5 @@ elif [[ "$arg" == "reset" ]]; then
 fi
 
 echo "command usage: ./run.sh start|reset"
+echo "use ./run.sh start|reset novenv if venv is not used for dependencies"
 exit 1
