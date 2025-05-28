@@ -37,10 +37,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     CORS(app)
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     DB_URL = os.getenv("DB_URL")
     if DB_URL == None:
-        DB_URL = "instance/dev.sqlite3"
+        DB_URL = "instance/db.sqlite3"
 
     app.logger.info(f"DB_URL: {DB_URL}")
     app.config.from_mapping(SECRET_KEY="dev", DATABASE=DB_URL)
