@@ -15,7 +15,7 @@ ARCH="${ARCH_RAW,,}"
 OS_NAME="${OS_RAW,,}" 
 
 #rust compile target is named aarch64 not arm64
-if [[ "$OS_NAME" == "linux" && "$ARCH" == "arm64" ]]; then
+if [[ "$OS_NAME" == "darwin" && "$ARCH" == "arm64" ]]; then
     TARGET_ARCH="aarch64"
 else
     TARGET_ARCH="$ARCH"
