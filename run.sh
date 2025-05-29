@@ -15,10 +15,12 @@ SYSTEM=""
 
 if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
     SYSTEM="aarch64-darwin"  #rust compile target is named aarch64-apple-darwin not arm64-...
+elif [[ "$OS" == "Darwin" && "$ARCH" == "x86_64" ]]; then
+    SYSTEM="x86_64-darwin"
 elif [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
     SYSTEM="x86_64-linux"
 else
-    echo "Only aarch64-Darwin and x86_64-Linux is supported you have: $ARCH-$OS"
+    echo "Only aarch64-Darwin, x86_64-darwin and x86_64-Linux is supported you have: $ARCH-$OS"
     exit 1
 fi
 
@@ -55,7 +57,7 @@ activate_venv() {
 }
 
 start_servers() {
-    "$GIT_ROOT/ws-server/lfsc-$SYSTEM" &
+    "$GIT_ROOT/ws-server/core-$SYSTEM" &
 
     ws_pid=$!
     echo "Ws ws-server started (PID: $ws_pid)"
