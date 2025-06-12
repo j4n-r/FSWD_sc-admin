@@ -33,7 +33,7 @@ TODO: add instructions for websocket server and env variables
 ##### Default users
 email:password
 
-admin@admin.com:admin
+admin@admin.com:admin \
 test@test.com:test
 
 ##### Reset database
