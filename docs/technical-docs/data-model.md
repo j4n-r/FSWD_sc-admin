@@ -5,7 +5,7 @@ nav_order: 2
 ---
 
 {: .label }
-[Jane Dane]
+[Jan Rueggebeg]
 
 {: .no_toc }
 # Data model
@@ -17,4 +17,8 @@ nav_order: 2
 {: toc }
 </details>
 
-[Visualize and describe the data model(s) of your application. This description should match the actual implementation.]
+**work in progress** 
+This will be revised in the future. 
+Below you can fin the current data model.
+![image](https://github.com/user-attachments/assets/b4461f4e-52f7-48fc-9f4a-e75dda6f659d)
+
