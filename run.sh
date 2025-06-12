@@ -31,15 +31,46 @@ export DATABASE_URL="$DATABASE_URL_ENV"
 ws_pid=""
 flask_pid=""
 
+
+# Improved cleanup function
 cleanup() {
-    if [[ -n "$flask_pid" ]]; then 
-        kill $flask_pid 2>/dev/null
-        echo "Flask server stopped"
-    fi
-    if [[ -n "$ws_pid" ]]; then
-        kill $ws_pid 2>/dev/null
-        echo "Ws ws-server stopped"
-    fi
+    echo "Shutting down servers..."
+    
+    # Function to kill a process with timeout
+    kill_with_timeout() {
+        local pid=$1
+        local name=$2
+        local timeout=5
+        
+        if [[ -n "$pid" ]] && kill -0 "$pid" 2>/dev/null; then
+            echo "Stopping $name (PID: $pid)..."
+            kill "$pid" 2>/dev/null || true
+            
+            # Wait for graceful shutdown
+            local count=0
+            while kill -0 "$pid" 2>/dev/null && [[ $count -lt $timeout ]]; do
+                sleep 1
+                ((count++))
+            done
+            
+            # Force kill if still running
+            if kill -0 "$pid" 2>/dev/null; then
+                echo "Force killing $name..."
+                kill -9 "$pid" 2>/dev/null || true
+                sleep 1
+            fi
+            
+            if ! kill -0 "$pid" 2>/dev/null; then
+                echo "$name stopped"
+            else
+                echo "Warning: $name may still be running"
+            fi
+        fi
+    }
+    
+    kill_with_timeout "$flask_pid" "Flask server"
+    kill_with_timeout "$ws_pid" "Ws ws-server"
+    
     exit 0
 }
 
@@ -58,7 +89,6 @@ activate_venv() {
 
 start_servers() {
     "$GIT_ROOT/ws-server/core-$SYSTEM" &
-
     ws_pid=$!
     echo "Ws ws-server started (PID: $ws_pid)"
 
@@ -67,10 +97,16 @@ start_servers() {
     echo "Flask server started (PID: $flask_pid)"
 
     echo -e "${BLUE}Servers started press CTRL+C to quit${NC}"
-    wait
+    
+    # Wait for both processes
+    while kill -0 "$ws_pid" 2>/dev/null && kill -0 "$flask_pid" 2>/dev/null; do
+        sleep 1
+    done
+    
     exit 0
 }
 
+# Set trap for cleanup
 trap cleanup SIGINT SIGTERM EXIT
 
 if [[ "$venv" != "novenv" ]]; then
