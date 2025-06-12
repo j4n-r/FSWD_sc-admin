@@ -3,7 +3,8 @@ title: Value Proposition
 nav_order: 1
 ---
 
-{: .no_toc }
+{: .label }
+[Jan Rueggebeg]
 
 # Value Proposition
 <details open markdown="block">

@@ -3,6 +3,9 @@ title: Design Decisions
 nav_order: 3
 ---
 
+{: .label }
+[Jan Rueggebeg]
+
 {: .no_toc }
 # Design decisions
 

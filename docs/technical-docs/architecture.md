@@ -5,7 +5,7 @@ nav_order: 1
 ---
 
 {: .label }
-[Jane Dane]
+[Jan Rueggebeg]
 
 {: .no_toc }
 # Architecture
