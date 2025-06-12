@@ -15,7 +15,8 @@ Matr.-Nr.
 
 TODO: add instructions for websocket server and env variables 
 
-### Run the app##### Python venv + install requirements
+### Run the app
+##### Python venv + install requirements
 ```bash
  python3 -m venv venv/ 
  source venv/bin/activate
