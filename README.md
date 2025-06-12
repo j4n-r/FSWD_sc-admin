@@ -8,15 +8,16 @@
 Matr.-Nr.
 : 77212019358
 
+
 **Selin Günaydin**
 
 Matr.-Nr.
 : 77211985166
 
-TODO: add instructions for websocket server and env variables 
+
 
 ### Run the app
-##### Python venv + install requirements
+#### Python venv + install requirements
 ```bash
  python3 -m venv venv/ 
  source venv/bin/activate
@@ -24,7 +25,7 @@ TODO: add instructions for websocket server and env variables
  
 ```
 
-##### Start app
+#### Start app
 
 ``` bash
  ./run.sh start
@@ -36,7 +37,7 @@ email:password
 admin@admin.com:admin \
 test@test.com:test
 
-##### Reset database
+#### Reset database
 
 ``` bash
  ./run.sh reset
@@ -44,12 +45,12 @@ test@test.com:test
 
 
 ### Flask commands
-##### Init db 
+#### Init db 
 ```
 flask init-db
 ```
 
-##### Run the app from the root dir
+#### Run the app from the root dir
 ```
 flask run --debug
 ```
