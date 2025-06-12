@@ -24,13 +24,15 @@ TODO: add instructions for websocket server and env variables
  
 ```
 
-
-
 ##### Start app
 
 ``` bash
  ./run.sh start
 ```
+
+##### Default users
+admin@admin.com:admin
+test@test.com:test
 
 ##### Reset database
 
