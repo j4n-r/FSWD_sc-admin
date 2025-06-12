@@ -3,9 +3,6 @@ title: Design Decisions
 nav_order: 3
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
 # Design decisions
 
@@ -40,7 +37,7 @@ Updated
 
 ---
 
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
+## 01: How to access the database?
 
 ### Meta
 
@@ -48,33 +45,16 @@ Status
 : Work in progress - **Decided** - Obsolete
 
 Updated
-: 30-Jun-2024
+: 12-06-2025
 
 ### Problem statement
 
 Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
 
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
-
-We intend to scale up the application later on, since we see substantial business value in it.
-
-
-
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
-
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
-
 ### Decision
 
-We stick with plain SQL.
-
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
-
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
+We stick with plain SQL since the application is not complex enough to justify learing an ORM. 
+This decision was made by Jan Rueggeberg.
 
 ### Regarded options
 
@@ -83,10 +63,93 @@ We regarded two alternative options:
 + Plain SQL
 + SQLAlchemy
 
-| Criterion | Plain SQL | SQLAlchemy |
-| --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
+Why plain SQL?
++ The team already knows SQL
++ The queries are simple enough 
++ Over head to learn SQL alchemy is not worth it and will create unecessary complexity for this use case (since we already have simple queries)
++ The query results are easy to work with since the schema is also simple
+
+## 02: Should we use flask blueprints?
+
+### Meta
+
+Status
+: Work in progress - **Decided** - Obsolete
+
+Updated
+: 12-06-2025
+
+### Problem statement
+
+Should we split the Application into different Blueprints. (https://flask.palletsprojects.com/en/stable/blueprints/) 
+### Decision
+
+The decisions was made to use Blueprints dueto overrating the complexity of the app by Jan Rueggeberg. It will not be revised since the result is still valid if the application should grow.
+
+### Regarded options
+
+The decision to use Blueprints was made because it brings better modularity for the cost of some added complexity. 
+This was not needed for a project of this complexity level (having only two blueprints at the moment). But since the refactoring would make no sense, meaning that if the application would grow, having it split in blueprints is probably a pleasant thing, this decision will stay.
+
+Of course. Here is the "Styling framework" section rewritten to match the style and detail of the other entries.
+
+## 03: Which styling framework should we use?
+
+### Meta
+
+Status
+: Work in progress - **Decided** - Obsolete
+
+Updated
+: 12-06-2025
+
+### Problem statement
+
+What styling approach should be used for the application's front-end? The main options are a component-based framework like Bootstrap 5 or a utility-first framework like Tailwind CSS.
+
+### Decision
+
+The decision was made by me (Jan Rueggeberg) to use Tailwind CSS. The primary reason is significantly higher development speed for myself , while other team members have no strong preference or prior experience with other frameworks that would be negatively impacted.
+
+### Regarded options
+
+We regarded two main options for the styling framework:
+
++ Tailwind CSS
++ Bootstrap 5
+
+With https://flowbite.com/docs/components/ we can have a more modular approach with the additional flexibility of tailwindcss. 
+Using both styling options add the same time did not work because of the style resets. That would've been also really messy.
+
+## 04: Should the websocket server be a standalone application?
+
+### Meta
+
+Status
+: Work in progress - **Decided** - Obsolete
+
+Updated
+: 12-06-2025
+
+### Problem statement
+
+Integrate the websocket server into the flask app or build a standalone one.
+
+### Decision
+
+The decision was made to build a standalone application by Jan Rueggeberg for personal reasons.
+
+### Regarded options
+
++ Standalone application
++ Integrate into the flask app
+
+Integrating the websocket server into the flask app would be the easier and more time efficient solution. The perfomance loss of using python vs rust is not relevant since the app has no users and switching later to a standalone one would be not really be a problem.
+
+Why still build something else?
+
+Since I am learning rust at the moment and it brings me more joy learing this new shiny thing than quickly writing it in python I have decided to write a standalone application.
+I am sure that the scope of this project is still big enough for the coursework. 
+The only real negative is that it makes running the whole project a bit more tricky, but I think I managed that well enough with the run.sh script.
 
 ---
