@@ -26,10 +26,11 @@ https://icons.getbootstrap.com/
 
 
 ### Auth
-Schema: https://www.better-auth.com/docs/concepts/database
+Schema inspiration: https://www.better-auth.com/docs/concepts/database
 
 ### DB
 https://flask.palletsprojects.com/en/stable/tutorial/database/
+https://github.com/chartdb/chartdb
 
 ## ChatGPT
 https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
@@ -50,7 +51,6 @@ https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event
 ## CORS
 https://github.com/corydolphin/flask-cors
 https://github.com/corydolphin/flask-cors/issues/292
-
 
 https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
