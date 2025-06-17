@@ -8,6 +8,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from werkzeug.routing import Rule
 
+from app.api import api_bp
 from app.auth import auth_bp
 from app.main import main_bp
 
@@ -68,4 +69,5 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth_bp, url_prefix="/auth")
     app.register_blueprint(main_bp, url_prefix="/")
+    app.register_blueprint(api_bp, url_prefix="/api")
     return app

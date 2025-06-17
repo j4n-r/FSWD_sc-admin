@@ -157,7 +157,6 @@ def token():
         return "", 200
 
     request_data = request.get_json()
-    db = get_db()
     error = None
     email = None
     password = None
@@ -170,20 +169,10 @@ def token():
 
     if not email:
         error = "Email is required."
+        return jsonify({"msg": error}), 401
     if not password:
         error = "Password is required."
-
-    if error is None:
-        try:
-            db.execute(
-                "INSERT INTO users (email, password) VALUES (?, ?)",
-                (email, generate_password_hash(password)),
-            )
-            db.commit()
-        except db.IntegrityError:
-            error = f"User {email} is already registered."
-        else:
-            return jsonify({"msg": "Bad username or password"}), 401
+        return jsonify({"msg": error}), 401
 
     user = query_db("SELECT * FROM users WHERE email=?", [email], one=True)
     if user is None:
@@ -191,7 +180,6 @@ def token():
         return jsonify("Something went wrong")
 
     additional_claims = {"user_id": user["id"], "username": user["username"]}
-
     access_token = create_access_token(
         email, additional_claims=additional_claims, fresh=True
     )
