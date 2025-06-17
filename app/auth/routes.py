@@ -1,4 +1,5 @@
 import uuid
+from textwrap import indent
 
 from flask import (
     current_app,
@@ -195,3 +196,21 @@ def refresh():
     identity = get_jwt_identity()
     access_token = create_access_token(identity=identity, fresh=False)
     return jsonify(access_token=access_token)
+
+
+@auth_bp.route("/check", methods=["GET"])
+@jwt_required()
+def check():
+    try:
+        current_user = get_jwt_identity()
+        return jsonify(
+            {
+                "authenticated": True,
+                "user_id": current_user,
+                "message": "User is authenticated",
+            }
+        ), 200
+    except Exception as e:
+        return jsonify(
+            {"authenticated": False, "message": "Authentication failed"}
+        ), 401
