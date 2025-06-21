@@ -85,7 +85,7 @@ super() }}{% endblock %} {% block content %}
   });
 
   function connectWs() {
-    ws = new WebSocket("ws://0.0.0.0:8080");
+    ws = new WebSocket("{{WS_URL}}");
 
     ws.onopen = (event) => {
       console.log("OPEN", event);

@@ -1,4 +1,5 @@
 import json
+import os
 
 from flask import flash, g, redirect, render_template, request, session, url_for
 
@@ -18,6 +19,9 @@ def home():
 @main_bp.route("/chat/<string:id>")
 @login_required
 def chat(id):
+    WS_URL = os.getenv("WS_URL")
+    if WS_URL == None:
+        WS_URL = "ws://0.0.0.0:8080"
     conv = query_db("SELECT * FROM conversations WHERE id = ?", [id], one=True)
     for row in conv:
         print(row)
@@ -30,6 +34,7 @@ def chat(id):
         "main/chat_id.html",
         conv=conv,
         messages=messages,
+        WS_URL=WS_URL,
         user_id=session.get("user_id"),
     )
 
@@ -78,7 +83,6 @@ def conversation(id):
 @role_required("admin")
 def create_conversation():
     if request.method == "POST":
-        
         return redirect(url_for("groups"))
     else:
         users = query_db("SELECT * FROM USERS")

@@ -35,6 +35,7 @@
           ];
           env = {
             PYRIGHT_PYTHON_PATH = "${pkgs.python312}/bin/python3";
+            #WS_URL = ""; # 0.0.0.0:8080 is in python app defined, used only for deployments
           };
         };
       }
