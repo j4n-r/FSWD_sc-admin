@@ -21,6 +21,7 @@ head %}{{ super() }}{% endblock %} {% block content %}
 
   <div class="mt-8">
     <form class="space-y-6" method="POST">
+      
       <div class="bg-white rounded-lg shadow border border-gray-300 p-6">
         <h2 class="text-lg font-semibold text-gray-900 mb-4">
           Basic Information
@@ -95,7 +96,7 @@ head %}{{ super() }}{% endblock %} {% block content %}
                 </div>
               </div>
               <!-- styles do do not work properly without remving all styles, then you would also have to add the checking state etc. checkboxes suck-->
-              <input type="checkbox" class="w-5 h-5">
+              <input name="initial_members" id ="initial_members" value="{{user['id']}}" type="checkbox"  class="w-5 h-5">
             </div>
           </div>
           {% endfor %}

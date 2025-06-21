@@ -2,5 +2,3 @@ flask
 flask-jwt-extended
 flask-cors
 python-dotenv
-flask-wtf
-wtforms

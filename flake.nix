@@ -22,8 +22,6 @@
                 flask
                 flask-jwt-extended
                 flask-cors
-                flask-wtf
-                wtforms
                 python-dotenv
               ]
             ))
