@@ -15,12 +15,7 @@
     {% for group in groups %}
     <div class="bg-white rounded-lg shadow border border-gray-300 p-4 hover:shadow-md hover:border-blue-300">
       <div class="flex items-center">
-        <!-- Group image/icon -->
-        <div class="flex-shrink-0 mr-4">
-          {% if group['image'] %}
-          <img src="{{ group['image'] }}" alt="{{ group['name'] or 'Group' }}"
-            class="w-12 h-12 rounded-full object-cover" />
-          {% else %}
+        <div class=flex-shrink-0 mr-4">
           <div class="p-3 rounded-full flex items-center justify-center bg-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -31,7 +26,6 @@
               <circle cx="9" cy="7" r="4" />
             </svg>
           </div>
-          {% endif %}
         </div>
 
         <!-- Group info -->

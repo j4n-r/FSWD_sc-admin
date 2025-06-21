@@ -27,35 +27,6 @@ head %}{{ super() }}{% endblock %} {% block content %}
         </h2>
         <div class="space-y-4">
           <div>
-            <label for="conv_image" class="block text-sm font-medium text-gray-700 mb-2">
-              Group Image
-            </label>
-            <div class="flex items-center space-x-4">
-              <div id="image-preview"
-                class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="lucide lucide-users-icon lucide-users">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <path d="M16 3.128a4 4 0 0 1 0 7.744" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <circle cx="9" cy="7" r="4" />
-                </svg>
-              </div>
-              <div>
-                <input type="file" id="conv_image" name="conv_image" accept="image/*" class="hidden" />
-                <label for="conv_image"
-                  class="cursor-pointer bg-blue-50 text-blue-700 px-4 py-2 rounded-md border border-blue-300 hover:bg-blue-100 transition-colors">
-                  Choose Image
-                </label>
-                <p class="text-xs text-gray-500 mt-3">
-                  PNG, JPG up to 5MB. Recommended: 200x200px
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div>
             <label for="conv_name" class="block text-sm font-medium text-gray-700 mb-2">
               Group Name <span class="text-red-500">*</span>
             </label>
@@ -87,10 +58,6 @@ head %}{{ super() }}{% endblock %} {% block content %}
             class="bg-white rounded-lg shadow border border-gray-200 p-4 hover:shadow-md hover:border-blue-300 transition-all duration-200">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
-                {% if user['image'] %}
-                <img src="{{ user['image'] }}" alt="{{ user['username'] }}"
-                  class="w-12 h-12 rounded-full object-cover" />
-                {% else %}
                 <div class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-200">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -99,7 +66,6 @@ head %}{{ super() }}{% endblock %} {% block content %}
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                {% endif %}
               </div>
 
               <div class="flex-grow min-w-0">

@@ -85,7 +85,6 @@ def login():
             session["user_id"] = user["id"]
             session["username"] = user["username"]
             session["role"] = user["role"]
-            session["image"] = user["image"]
             current_app.logger.info("%s logged in as a user", user["email"])
             return redirect("/")
 
@@ -132,7 +131,6 @@ def guest():
                 session["user_id"] = user["id"]
                 session["username"] = user["username"]
                 session["role"] = user["role"]
-                session["image"] = user["image"]
                 current_app.logger.info("%s logged in as a guest", user["email"])
                 flash(
                     "Succes",

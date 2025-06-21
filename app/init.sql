@@ -6,7 +6,6 @@ CREATE TABLE users (
   role TEXT NOT NULL CHECK(role in ('admin', 'user','guest')),
   emailVerified INTEGER ,
   name TEXT,
-  image TEXT,
   updated_at NOT NULL DEFAULT (CURRENT_TIMESTAMP),
   created_at  TEXT                    NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
@@ -42,7 +41,6 @@ CREATE TABLE conversations (
         REFERENCES users(id) ON DELETE SET NULL,
     name         TEXT,                                     -- optional for DMs
     description  TEXT,
-    image        TEXT,
     created_at   TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     updated_at   TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );

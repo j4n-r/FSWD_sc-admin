@@ -14,15 +14,7 @@
       class="bg-white rounded-lg shadow border border-gray-200 p-4 hover:shadow-md transition-all hover:border-blue-300"
     >
       <div class="flex items-center">
-        <!-- user image/ icon  -->
         <div class="flex-shrink-0 mr-4">
-          {% if user['image'] %}
-          <img
-            src="{{ user['image'] }}"
-            alt="{{ user['username'] }}"
-            class="w-12 h-12 rounded-full object-cover"
-          />
-          {% else %}
           <div
             class="p-3 rounded-full flex items-center justify-center bg-gray-200"
           >
@@ -42,7 +34,6 @@
               <circle cx="12" cy="7" r="4" />
             </svg>
           </div>
-          {% endif %}
         </div>
 
         <!-- username -->

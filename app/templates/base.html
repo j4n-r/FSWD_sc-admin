@@ -99,13 +99,6 @@
             {% if g.user %}
             <div class="flex p-2 px-4 bg-white shadow-md mb-4 rounded-md">
               <div class="mr-4">
-                {% if g.user["image"] %}
-                <img
-                  src="{{ g.user['image'] }}"
-                  alt="{{ g.user['username'] }}"
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                {% else %}
                 <div
                   class="p-3 rounded-full flex items-center justify-center bg-gray-300 text-gray-700"
                 >
@@ -125,7 +118,6 @@
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                {% endif %}
               </div>
               <div class="font-semibold text-gray-700 mt-2">
                 {{ g.user['username'] or g.user['email'] }}
