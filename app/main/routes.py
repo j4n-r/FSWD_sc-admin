@@ -101,5 +101,5 @@ def users():
 @role_required("admin")
 @login_required
 def groups():
-    groups = query_db("SELECT * from conversations WHERE type = 'group'")
+    groups = query_db("SELECT * from conversations")
     return render_template("main/groups.html", groups=groups)

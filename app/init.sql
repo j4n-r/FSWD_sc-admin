@@ -35,11 +35,9 @@ CREATE TABLE IF NOT EXISTS messages (
 -- Groups, one-to-one DMs and small group-DMs
 CREATE TABLE conversations (
     id           TEXT PRIMARY KEY NOT NULL,                -- UUID
-    -- 'group' | 'dm' | 'group_dm'
-    type         TEXT NOT NULL CHECK (type IN ('group','dm')),
-    owner_id     TEXT                                       -- NULL for pure DMs
+    owner_id     TEXT                                       
         REFERENCES users(id) ON DELETE SET NULL,
-    name         TEXT,                                     -- optional for DMs
+    name         TEXT NOT NULL,
     description  TEXT,
     created_at   TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     updated_at   TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
@@ -90,16 +88,15 @@ INSERT INTO devices (id, user_id,  public_key, last_seen) VALUES
 /* ─────────────────────────────────────────────
    CONVERSATIONS
    ───────────────────────────────────────────── */
--- Direct-message (DM) conversation
-INSERT INTO conversations (id, type, created_at)
+INSERT INTO conversations (id, owner_id,name, created_at)
 VALUES ('c0000000-0000-0000-0000-00000000d001',
-        'dm', '2025-04-15 09:15:00');
+         '624f76c7-7b46-4309-8207-126317477e88',
+         'Another Group',
+         '2025-04-15 09:15:00');
 
--- Demo group “General”, owned by admin
 INSERT INTO conversations
-        (id, type, owner_id, name,  created_at)
+        (id,  owner_id, name,  created_at)
 VALUES  ('c0000000-0000-0000-0000-00000000g001',
-         'group',
          '624f76c7-7b46-4309-8207-126317477e88',
          'General', '2025-04-15 09:20:00');
 

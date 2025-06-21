@@ -13,10 +13,6 @@ block head %} {{ super() }} {% endblock %} {% block content %}
       </a>
       <div class="flex justify-between w-full ">
         <h1 class="text-3xl font-bold text-gray-900">{{conv["name"]}}</h1>
-        <div
-          class="{{'bg-blue-300 text-gray-900' if conv['type'] == 'dm' else 'bg-violet-300 text-gray-900' }} text-xs px-2 py-0.5 mb-3 rounded ">
-          {{ 'Direct Message' if conv['type'] == 'dm' else 'Group' }}
-        </div>
       </div>
     </div>
   </div>
@@ -37,7 +33,7 @@ block head %} {{ super() }} {% endblock %} {% block content %}
     {% for user in users %}
     <div class="bg-white p-4 rounded-lg shadow border border-gray-200 hover:shadow-md">
       <div class="flex items-start">
-        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold mr-3">
+        <div class="w-12 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold mr-3">
           {{ user["username"][0] | upper }}
           <!-- some jinja magic -->
         </div>

@@ -17,19 +17,11 @@
           <div class="flex-grow">
             <div class="flex justify-between items-baseline">
               <h2 class="text-lg font-semibold text-gray-900">
-                {% if conv['name'] %} {{ conv['name'] }} {% else %} {% if
-                conv['type'] == 'dm' %} Direct Message {% else %} Group Chat {%
-                endif %} {% endif %}
+                {{conv['name']}}
               </h2>
             </div>
 
             <div class="flex items-center gap-2 mt-1">
-              <span
-                class="{{'bg-blue-300 text-gray-900' if conv['type'] == 'dm' else 'bg-violet-300 text-gray-900' }} text-xs px-2 py-0.5 rounded"
-              >
-                {{ 'Direct Message' if conv['type'] == 'dm' else 'Group' }}
-              </span>
-
               <span class="text-xs text-gray-500">
                 {{ conv['updated_at'].split(' ')[0] if ' ' in conv['updated_at']
                 else conv['updated_at'] }}

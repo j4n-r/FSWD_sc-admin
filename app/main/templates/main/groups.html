@@ -16,7 +16,7 @@
     <div class="bg-white rounded-lg shadow border border-gray-300 p-4 hover:shadow-md hover:border-blue-300">
       <div class="flex items-center">
         <div class=flex-shrink-0 mr-4">
-          <div class="p-3 rounded-full flex items-center justify-center bg-gray-200">
+          <div class="p-3 rounded-full flex items-center justify-center bg-gray-200 mr-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="lucide lucide-users-icon lucide-users">
@@ -33,7 +33,7 @@
           <div class="flex justify-between">
             <div>
               <h2 class="text-lg font-semibold text-gray-900">
-                {{ group['name'] or 'Unnamed Group' }}
+                {{ group['name'] }}
               </h2>
               {% if group['description'] %}
               <p class="text-sm text-gray-500 mt-1">
@@ -44,9 +44,6 @@
           </div>
 
           <div class="flex items-center mt-2 space-x-3">
-            <span class="bg-violet-300 text-gray-900 text-xs px-2 py-0.5 rounded font-medium">
-              Group
-            </span>
             <div class="text-xs text-gray-500">
               Created {{ group['created_at'].split(' ')[0] if ' ' in
               group['created_at'] else group['created_at'] }}
@@ -78,7 +75,6 @@
             </svg>
           </button>
 
-          <!-- View  -->
           <button class="text-emerald-500 p-2 rounded hover:bg-emerald-50" title="View Members">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -90,7 +86,6 @@
             </svg>
           </button>
 
-          <!-- Navigate arrow -->
           <div class="text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
