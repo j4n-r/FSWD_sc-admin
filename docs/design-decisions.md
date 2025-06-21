@@ -152,3 +152,39 @@ Why still build something else?
 Since I am learning Rust at the moment and it brings me more joy learning this new shiny thing than quickly writing it in Python I have decided to write a standalone application.
 I am sure that the scope of this project is still big enough for the coursework. 
 The only real negative is that it makes running the whole project a bit more tricky, but I think I managed that well enough with the run.sh script.
+
+## 05: Should we use WTForms
+
+### Meta
+
+Status
+: Work in progress - **Decided** - Obsolete
+
+Updated
+: 21-06-2025
+
+### Problem statement
+
+Should we use the WTForms library for managing forms or handle them with plain HTML and Flask request handling?
+
+### Decision
+
+We are not using WTForms. 
+
+### Regarded options
+
+We regarded two options:
+
++ WTForms
++ Plain HTML forms
+
+Why plain HTML forms?
++ WTForms is too much "magic" - adds unnecessary abstraction layer
++ Jan R. already knows normal HTML forms
++ CSRF validation is nice but this is not a critical application
++ Server side validation is not needed since only admin users use the forms
++ Faster development without learning additional framework
++ Full control over form styling and behavior
++ No additional dependencies
+
+The overhead of learning WTForms is not justified for simple forms in this application.
