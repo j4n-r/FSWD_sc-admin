@@ -22,5 +22,5 @@ nav_order: 2
 This will be revised in the future. 
 
 Below you can find the current data model.
-![image](https://github.com/user-attachments/assets/b4461f4e-52f7-48fc-9f4a-e75dda6f659d)
 
+![data-model-chartdb](https://github.com/user-attachments/assets/f334e5c9-1e49-4d2e-9329-1de9c00c204c)
