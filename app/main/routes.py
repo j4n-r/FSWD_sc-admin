@@ -22,8 +22,7 @@ from . import main_bp
 @main_bp.route("/")
 @login_required
 def home():
-    # return render_template("main/home.html")
-    return redirect(url_for("main.conversations"))  # redirect for now bc no dashboard
+    return redirect(url_for("main.conversations"))
 
 
 @main_bp.route("/chat/<string:id>")
@@ -98,7 +97,6 @@ def create_conversation():
         group_name = form.get("conv_name")
         description = form.get("conv_description")
         selected_member_ids = request.form.getlist("initial_members")
-        print(f"Selected members: {selected_member_ids}")  # Debug print
 
         group_id = str(uuid.uuid4())
 
