@@ -180,9 +180,11 @@ def token():
 
     additional_claims = {"user_id": user["id"], "username": user["username"]}
     access_token = create_access_token(
-        email, additional_claims=additional_claims, fresh=True
+        identity=user["id"],
+        additional_claims={"username": user["username"]},
+        fresh=True,
     )
-    refresh_token = create_refresh_token(identity=email)
+    refresh_token = create_refresh_token(identity=user["id"])
 
     # automatically sets right headers (json.dump) only does  json
     return jsonify(access_token=access_token, refresh_token=refresh_token)
@@ -201,10 +203,11 @@ def refresh():
 def check():
     try:
         current_user = get_jwt_identity()
+        print(current_user)
         return jsonify(
             {
                 "authenticated": True,
-                "user_id": current_user,
+                "user": current_user,
                 "message": "User is authenticated",
             }
         ), 200

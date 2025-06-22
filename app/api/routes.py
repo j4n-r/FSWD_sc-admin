@@ -53,7 +53,7 @@ def getMessages(conv_id: str):
 @jwt_required()
 def getConversation(conv_id: str):
     """
-    Get all conversations for a user.
+    Get String
     """
     current_app.logger.debug(request)
     conversation = query_db(
