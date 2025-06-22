@@ -19,7 +19,7 @@ nav_order: 2
 
 ## Database Model
 Simple and self exploratory data model. \
-We got users, who are send "assigned" to conversations through the conversion_members table. And one messages table for all messages which were sent in conversations by users.
+We got `users`, who are "assigned" to `conversations` through the `conversation_members` table. And one `messages` table for all messages which were sent in conversations by users.
 
 ![data-model-chartdb](https://github.com/user-attachments/assets/82ca4feb-b3b0-4020-a0c6-3eb092886693)
 
