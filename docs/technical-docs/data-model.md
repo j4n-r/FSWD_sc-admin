@@ -17,16 +17,16 @@ nav_order: 2
 {: toc }
 </details>
 
-## Database Model
+## Database model
 Simple and self exploratory data model. \
 We got `users`, who are "assigned" to `conversations` through the `conversation_members` table. And one `messages` table for all messages which were sent in conversations by users.
 
 ![data-model-chartdb](https://github.com/user-attachments/assets/82ca4feb-b3b0-4020-a0c6-3eb092886693)
 
-## WS Messages
+## WebSocket messages
 The messages that are sent are different then the ones that are saved in the database.
 
-### ID Message
+### Identification message
 The IdMessage gets send every time a user enters a chat. The ws server will add the user and the connection to the connection pool.
 ```json
 {
@@ -37,7 +37,7 @@ The IdMessage gets send every time a user enters a chat. The ws server will add 
 }
 ```
 
-### ChatMessage
+### Chat message
 This is the actual message that gets send over the wire.
 ```json
 {
