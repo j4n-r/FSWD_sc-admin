@@ -68,4 +68,4 @@ def getConversation(conv_id: str):
     if not conversation:
         return {"message": "Conversation not found"}, 404
 
-    return {"messages": conversation}, 200
+    return {"messages": dict(conversation)}, 200
