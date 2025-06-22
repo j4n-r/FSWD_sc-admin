@@ -10,14 +10,6 @@ CREATE TABLE users (
   created_at  TEXT                    NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
-CREATE TABLE IF NOT EXISTS devices (
-    id          TEXT        PRIMARY KEY NOT NULL, -- UUID as TEXT
-    user_id     TEXT        NOT NULL
-        REFERENCES users(id) ON DELETE CASCADE, -- delete devices when user is deleted
-    public_key  TEXT        NOT NULL,
-    last_seen   TEXT        NOT NULL DEFAULT (CURRENT_TIMESTAMP) -- ISO8601 string
-);
-
 -- We do not store the message type here because it only chat messages will get saved
 -- (maybe attachments but these will  be in another table)
 CREATE TABLE IF NOT EXISTS messages (
@@ -73,17 +65,6 @@ CREATE TABLE conversation_members (
     --         "password": "test",
     --         "name": "test",
     --     },
-
-/* ─────────────────────────────────────────────
-   DEVICES
-   ───────────────────────────────────────────── */
-INSERT INTO devices (id, user_id,  public_key, last_seen) VALUES
-  ('b1111111-1111-1111-1111-111111111111',
-   '624f76c7-7b46-4309-8207-126317477e88',
-   'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...', '2025-04-15 09:10:00'),
-  ('b2222222-2222-2222-2222-222222222222',
-   '203170c2-e811-44ba-a24f-a1e57d53b363',
-   'MIICZAIBADANBgkqhkiG9w0BAQEFAASC...', '2025-04-15 09:12:00');
 
 /* ─────────────────────────────────────────────
    CONVERSATIONS
