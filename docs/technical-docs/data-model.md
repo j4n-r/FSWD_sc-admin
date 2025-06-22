@@ -23,4 +23,4 @@ This will be revised in the future.
 
 Below you can find the current data model.
 
-![data-model-chartdb](https://github.com/user-attachments/assets/f334e5c9-1e49-4d2e-9329-1de9c00c204c)
+![db-model-chartdb](https://github.com/user-attachments/assets/75f6295d-1910-4933-8af7-7325b7c42950)
