@@ -154,3 +154,51 @@ def users():
 def groups():
     groups = query_db("SELECT * from conversations")
     return render_template("main/groups.html", groups=groups)
+
+@main_bp.route("/groups/delete/<string:group_id>", methods=["POST"])
+@login_required
+@role_required("admin")
+def delete_group(group_id):
+    db = get_db()
+    try:
+        db.execute("DELETE FROM conversation_members WHERE conversation_id = ?", (group_id,))
+        db.execute("DELETE FROM messages WHERE conversation_id = ?", (group_id,))
+        db.execute("DELETE FROM conversations WHERE id = ?", (group_id,))
+        db.commit()
+        flash("Group deleted successfully.", "success")
+    except Exception as e:
+        db.rollback()
+        flash("Error deleting group.", "error")
+        print(f"Error deleting group: {e}")
+    return redirect(url_for("main.groups"))
+
+@main_bp.route("/groups/<string:group_id>/edit", methods=["GET", "POST"])
+@login_required
+@role_required("admin")
+def edit_group(group_id):
+    db = get_db()
+    group = query_db("SELECT * FROM conversations WHERE id = ?", [group_id], one=True)
+
+    if not group:
+        flash("Group not found", "error")
+        return redirect(url_for("main.groups"))
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+
+        try:
+            db.execute(
+                "UPDATE conversations SET name = ?, description = ? WHERE id = ?",
+                (name, description, group_id),
+            )
+            db.commit()
+            flash("Group updated successfully!", "success")
+            return redirect(url_for("main.groups"))
+        except Exception as e:
+            db.rollback()
+            flash("Error updating group", "error")
+            print(e)
+
+    return render_template("main/groups_edit.html", group=group)
+
