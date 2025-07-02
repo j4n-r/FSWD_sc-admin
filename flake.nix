@@ -26,6 +26,7 @@
               ]
             ))
             pkgs.sqlite
+            pkgs.vscode
 
             pkgs.tailwindcss
             pkgs.tailwindcss-language-server
