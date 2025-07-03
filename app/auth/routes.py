@@ -149,7 +149,7 @@ def logout():
     return redirect("/auth/login")
 
 
-@cross_origin()
+@cross_origin()  # had cors problems with android app
 @auth_bp.route("/token", methods=("GET", "POST", "OPTIONS"))
 def token():
     if request.method == "OPTIONS":

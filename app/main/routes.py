@@ -155,13 +155,16 @@ def groups():
     groups = query_db("SELECT * from conversations")
     return render_template("main/groups.html", groups=groups)
 
+
 @main_bp.route("/groups/delete/<string:group_id>", methods=["POST"])
 @login_required
 @role_required("admin")
 def delete_group(group_id):
     db = get_db()
     try:
-        db.execute("DELETE FROM conversation_members WHERE conversation_id = ?", (group_id,))
+        db.execute(
+            "DELETE FROM conversation_members WHERE conversation_id = ?", (group_id,)
+        )
         db.execute("DELETE FROM messages WHERE conversation_id = ?", (group_id,))
         db.execute("DELETE FROM conversations WHERE id = ?", (group_id,))
         db.commit()
@@ -171,6 +174,7 @@ def delete_group(group_id):
         flash("Error deleting group.", "error")
         print(f"Error deleting group: {e}")
     return redirect(url_for("main.groups"))
+
 
 @main_bp.route("/groups/<string:group_id>/edit", methods=["GET", "POST"])
 @login_required
@@ -201,4 +205,3 @@ def edit_group(group_id):
             print(e)
 
     return render_template("main/groups_edit.html", group=group)
-

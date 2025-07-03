@@ -5,6 +5,8 @@ import click
 from flask import current_app, g
 from werkzeug.security import check_password_hash, generate_password_hash
 
+# https://flask.palletsprojects.com/en/stable/tutorial/database/
+
 
 def get_db():
     """Connect to the application's configured database. The connection
@@ -133,6 +135,7 @@ def add_default_users():
             print(e)
 
 
+# https://flask.palletsprojects.com/en/stable/patterns/sqlite3/#easy-querying
 def query_db(query, args=(), one=False):
     db = get_db()
     cur = db.execute(query, args)

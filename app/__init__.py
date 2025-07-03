@@ -15,6 +15,8 @@ from app.main import main_bp
 
 def create_app(test_config=None):
     load_dotenv()
+
+    # https://flask.palletsprojects.com/en/stable/logging/#basic-configuration
     dictConfig(
         {
             "version": 1,
@@ -44,12 +46,14 @@ def create_app(test_config=None):
 
     app.logger.info(f"DB_URL: {DB_URL}")
     app.config.from_mapping(SECRET_KEY="dev", DATABASE=DB_URL)
+    # https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage.html#basic-usage
     # Setup the Flask-JWT-Extended extension
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
     app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
     app.config["JWT_SECRET_KEY"] = "dev"  # Change this!
     jwt = JWTManager(app)
 
+    # https://flask.palletsprojects.com/en/stable/tutorial/factory/
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile("config.py", silent=True)
