@@ -181,7 +181,7 @@ def token():
     additional_claims = {"user_id": user["id"], "username": user["username"]}
     access_token = create_access_token(
         identity=user["id"],
-        additional_claims={"username": user["username"]},
+        additional_claims=additional_claims,
         fresh=True,
     )
     refresh_token = create_refresh_token(identity=user["id"])
