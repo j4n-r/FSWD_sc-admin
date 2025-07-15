@@ -162,7 +162,7 @@ super() }}{% endblock %} {% block content %}
       },
       meta: {
         conversationId: "{{conv['id']}}",
-        senderId: user.id,
+        senderId: "{{g.user['id']}}",
         timestamp: new Date(),
       },
     });
