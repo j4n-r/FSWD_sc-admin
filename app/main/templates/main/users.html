@@ -1,5 +1,7 @@
-{% extends "base.html" %} {% block title %}Users{% endblock %} {% block head
-%}{{ super() }}{% endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block content %}
 <div class="max-w-4xl mx-auto p-6">
   <div class="flex flex-col">
     <h1 class="text-3xl font-bold text-gray-900">Users</h1>
@@ -75,12 +77,18 @@
           </div>
         </div>
 
+        <!-- Versteckte Formulare -->
+<form id="edit-user-{{ user.id }}" method="GET" action="{{ url_for('main.edit_user', user_id=user.id) }}" style="display: none;"></form>
+<form id="delete-user-{{ user.id }}" method="POST" action="{{ url_for('main.delete_user', user_id=user.id) }}" style="display: none;"></form>
+
+
         <!-- Buttons -->
         <div class="flex items-center space-x-2 ml-4">
-          <!-- Delete user -->
-          <button
-            class="text-blue-600 p-2 rounded hover:bg-blue-50"
-            title="Edit User"
+          <!-- Edit user -->
+        <button
+        onclick="editUser('{{ user.id }}')"
+        class="text-blue-600 p-2 rounded hover:bg-blue-50"
+        title="Edit User"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -103,11 +111,14 @@
             </svg>
           </button>
 
+
+
           <!-- edit user -->
           <button
             class="text-red-500 p-2 rounded hover:bg-red-50 transition-colors"
             title="Delete User"
-            onclick="confirmDelete('{{ user['id'] }}', '{{ user['name'] or user['username'] }}')"
+            onclick="confirmDelete('{{ user.id }}', '{{ user.username }}')"
+
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -175,4 +186,16 @@
     {% endif %}
   </div>
 </div>
+<script>
+  function confirmDelete(userId, userName) {
+    if (confirm(`Delete user "${userName}"?`)) {
+      document.getElementById(`delete-user-${userId}`).submit();
+    }
+  }
+
+  function editUser(userId) {
+    document.getElementById(`edit-user-${userId}`).submit();
+  }
+</script>
+
 {% endblock %}
