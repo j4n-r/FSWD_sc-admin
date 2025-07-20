@@ -4,7 +4,7 @@ parent: Team Evaluation
 nav_order: 1
 ---
 {: .label }
-[Selin Günaydin]
+Selin Günaydin
 {: .no_toc }
 # Goals achieved and missed
 

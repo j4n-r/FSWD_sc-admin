@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Selin Günaydin]
+Selin Günaydin
 
 {: .no_toc }
 # Peer review

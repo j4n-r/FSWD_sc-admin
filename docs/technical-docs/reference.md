@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Jan Rueggebeg]
+Jan Rueggebeg
 {: .no_toc }
 
 # Reference documentation

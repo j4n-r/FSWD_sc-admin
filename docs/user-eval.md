@@ -4,7 +4,7 @@ nav_order: 4
 ---
 
 {: .label }
-[Selin Günaydin]  
+Selin Günaydin
 
 {: .no_toc }
 # User evaluation

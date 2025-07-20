@@ -5,7 +5,7 @@ nav_order: 2
 ---
 
 {: .label }
-[Jan Rueggebeg]
+Jan Rueggebeg
 
 {: .no_toc }
 # Data model
