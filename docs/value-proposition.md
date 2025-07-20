@@ -4,7 +4,7 @@ nav_order: 1
 ---
 
 {: .label }
-[Jan Rueggeberg]
+Jan Rueggeberg
 
 # Value Proposition
 <details open markdown="block">
