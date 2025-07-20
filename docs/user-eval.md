@@ -21,25 +21,35 @@ nav_order: 4
 ### Meta
 
 Status
-: **Work in progress** - Done - Obsolete
+: **Done** 
 
 Updated
-: DD-MMM-YYYY
+: 20-07-2025
 
 ### Goal
 
-[Describe the goal of this evaluation, for example as a research question like: "How long does it take to register a new account and what is the drop-out rate?"]
+We aimed to evaluate the usability and effectiveness of the user and group management features from an admin perspective.  
+**Main research question:**  
+“How easily can professors create, edit, and delete student groups and users in the current system?”
 
 ### Method
 
-[Describe how you proceed to achieve your evaluation goal. Be as specific as possible: others should be able to replicate your evaluation by following the description on this section.]
+We conducted a usability test
+Each participant was asked to:
+- Create a new account
+- Delete and edit an existing group and user
 
 ### Results
 
-[Present the main results of your evaluation, for example: "On average, users need 3 min to register. The drop-out rate was 70%. Users that didn't complete provided the following reasons: ..."]
+- **Success rate:** 100% completed all tasks  
+- **Average time:** 1-2 min  
+
 
 ### Implications
 
-[What did you learn from this evaluation and what will you change to improve? Example: "We aim to decrease the drop-out rate by not asking for a birth date. We will re-run this evaluation to measure the impact."]
+This evaluation confirmed that the core functionality works reliably. 
+
+- Add a confirmation dialog when deleting a group 
+
 
 ---
