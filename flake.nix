@@ -1,6 +1,7 @@
 {
   description = "Python env";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+  inputs.nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.systems.url = "github:nix-systems/default";
   inputs.flake-utils = {
     url = "github:numtide/flake-utils";
@@ -8,11 +9,17 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }:
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      flake-utils,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       in
       {
         devShells.default = pkgs.mkShell {
@@ -26,6 +33,7 @@
               ]
             ))
             pkgs.sqlite
+            pkgs-unstable.opencode
 
             pkgs.tailwindcss
             pkgs.tailwindcss-language-server

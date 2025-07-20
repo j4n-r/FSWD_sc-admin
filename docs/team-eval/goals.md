@@ -18,9 +18,13 @@ nav_order: 1
 ## Team Goals 
 - make a working app
 
+This goal was achieved.
+
 ## Individual Goals
 ### Jan Rueggeberg
 - learn new things
+
+This goal was achieved. I learned a lot about Flask and a bit about SQLite, although I was already familiar with the web concepts.
 
 ### Selin Günaydin
 - good teamwork

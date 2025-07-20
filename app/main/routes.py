@@ -206,6 +206,7 @@ def edit_group(group_id):
 
     return render_template("main/groups_edit.html", group=group)
 
+
 # Edit user form anzeigen
 @main_bp.route("/users/edit/<string:user_id>", methods=["GET"])
 def edit_user(user_id):
@@ -215,24 +216,28 @@ def edit_user(user_id):
         return redirect(url_for("main.users"))
     return render_template("main/users_edit.html", user=user)
 
+
 # Änderungen speichern
 @main_bp.route("/users/edit/<string:user_id>", methods=["POST"])
 def update_user(user_id):
     username = request.form.get("username")
     email = request.form.get("email")
     role = request.form.get("role")
-    verified = request.form.get("emailVerified") == "on"
 
     db = get_db()
-    db.execute("""
+    db.execute(
+        """
         UPDATE users
-        SET username = ?, email = ?, role = ?, emailVerified = ?
+        SET username = ?, email = ?, role = ?
         WHERE id = ?
-    """, [username, email, role, int(verified), user_id])
+    """,
+        [username, email, role, user_id],
+    )
     db.commit()
 
     flash("User updated successfully", "success")
     return redirect(url_for("main.users"))
+
 
 @main_bp.route("/users/delete/<string:user_id>", methods=["POST"])
 def delete_user(user_id):

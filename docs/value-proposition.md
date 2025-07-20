@@ -47,8 +47,51 @@ The primary target users are:
 
 ## Customer Journey
 
-TODO
+### Professor Journey
+
+1. **Initial Setup**
+   - Professor accesses the web platform and creates an admin account
+   - Sets up the course environment with basic configuration
+
+2. **Group Management**
+   - Creates student groups based on class structure or project requirements
+   - Organizes groups by reordering them as needed for different activities
+   - Invites students to join specific groups via the platform
+
+3. **Ongoing Administration**
+   - Monitors all group conversations transparently to ensure academic integrity
+   - Intervenes when necessary to guide discussions or prevent misuse
+   - Manages group membership by adding/removing students as needed
+   - Deletes groups when projects or discussions conclude
+
+4. **Course Management**
+   - Maintains oversight of all student interactions across groups
+   - Uses administrative controls to facilitate productive academic discussions
+   - Ensures student safety and appropriate communication standards
+
+### Student Journey
+
+1. **Onboarding**
+   - Receives invitation or access credentials from professor
+   - Creates student account and joins assigned groups
+
+2. **Daily Usage**
+   - Participates in group discussions related to coursework
+   - Collaborates with classmates on projects and assignments
+   - Engages in organized academic conversations under professor supervision
+
+3. **Group Interaction**
+   - Communicates within assigned groups for specific topics or projects
+   - Benefits from structured, monitored environment that promotes focused academic discussion
+   - Experiences seamless group-based communication without administrative burden
+
+### Key Touchpoints
+
+- **Transparency**: Both professors and students benefit from clear visibility into group activities
+- **Control**: Professors maintain full administrative oversight while students focus on learning
+- **Simplicity**: Intuitive web interface ensures easy adoption for both user types
+- **Academic Focus**: Platform design specifically supports educational goals rather than general social interaction
 
 --- 
-This text was rewritten by an LLM (the idea is our own), see the sources.md file for the chat. (PDF will follow)
+This text was rewritten by an LLM (the idea for the project is our own).
 

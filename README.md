@@ -14,9 +14,12 @@ Matr.-Nr.
 Matr.-Nr.
 : 77211985166
 
-
-
 ### Run the app
+The chat functionality is only supported for the following architectures:
+- `aarch64-darwin` 
+- `x86_64-darwin` 
+- `x86_64-linux`
+
 #### Python venv + install requirements
 ```bash
  python3 -m venv venv/ 
@@ -24,6 +27,9 @@ Matr.-Nr.
  pip install -r requirements.txt
  
 ```
+
+#### First start 
+If there is no Database in the `instance/` directory, please run `./run.sh resert` or `flask init-db` first.
 
 #### Start app
 
