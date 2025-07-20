@@ -22,9 +22,10 @@ Selin Günaydin
 Contributions
 : Well, pretty much everything.
 
-## [Joe Doe]
+## Selin Günaydin
 
-Contributions
-: Diam nonumy eirmod
-: Tempor invidunt ut labore
-: ...
+Contibutions
+- Wrote and structured project documentation 
+- Conducted the user evaluation and summarized the results  
+- Helped implement smaller features like edit/delete  
+- Supported testing and gave feedback on UI and structure
