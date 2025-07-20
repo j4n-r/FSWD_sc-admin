@@ -19,5 +19,5 @@ Selin Günaydin
 
 ## Jan Rueggeberg - review for Selin Günaydin 
 
-I know learning programming is hard, and it's completely fine if it's not everyone's passion - I'm willing to write the application myself. I think I did everything I could to help you contribute to the project. Besides, it's not my responsibility to teach you the things we did in the class.
+I know learning programming is hard, and it's completely fine if it's not everyone's passion. I think I did everything I could to help you contribute to the project, like having a video call to introduce you to the project and giving you examplerary tasks. Besides that, it's not my responsibility to teach you the things we did in the class.
 I would have liked to have better communication about pain points and plans on your end. But since you had some personal issues, I can overlook that.
