@@ -29,7 +29,7 @@ The chat functionality is only supported for the following architectures:
 ```
 
 #### First start 
-If there is no Database in the `instance/` directory, please run `./run.sh resert` or `flask init-db` first.
+If there is no Database in the `instance/` directory, please run `./run.sh reset` or `flask init-db` first.
 
 #### Start app
 

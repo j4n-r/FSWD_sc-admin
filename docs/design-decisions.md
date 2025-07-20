@@ -4,7 +4,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Jan Rueggebeg]
+[Jan Rueggeberg]
 
 {: .no_toc }
 # Design decisions

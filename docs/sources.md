@@ -34,7 +34,7 @@ https://chatgpt.com/share/67efdbd4-df90-8001-b546-28d403e956ab
 
 ## T3-Chat
 These are not accessible to other users.
-There is no way to get these as PDF. I've transcripted them in markdown.
+There is no way to get these as PDF. I've transcribed them in markdown.
 https://t3.chat/chat/e5cb81d8-228a-4729-83fa-8edefe76037a
 https://t3.chat/chat/bd3fecc7-fcb4-43cf-b79e-b758eb1ce932
 

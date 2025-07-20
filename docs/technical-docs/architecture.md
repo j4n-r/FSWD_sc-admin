@@ -5,7 +5,7 @@ nav_order: 1
 ---
 
 {: .label }
-  * [ ] [Jan Rueggebeg]
+  * [ ] [Jan Rueggeberg]
 
 {: .no_toc }
 # Architecture
