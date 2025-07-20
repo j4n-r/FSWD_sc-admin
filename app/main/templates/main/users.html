@@ -55,19 +55,6 @@
             >
               {{ user['role'].title() }}
             </span>
-
-            <!-- email verify -->
-            {% if user['emailVerified'] %}
-            <span
-              class="bg-gray-100 text-emerald-500 text-xs px-2 py-0.5 rounded"
-            >
-              Verified
-            </span>
-            {% else %}
-            <span class="bg-gray-100 text-gray-700 text-xs px-2 py-0.5 rounded">
-              Unverified
-            </span>
-            {% endif %}
             <!-- Email -->
             <p class="text-sm text-gray-700 truncate">{{ user['email'] }}</p>
             <div class="text-xs text-gray-500">
