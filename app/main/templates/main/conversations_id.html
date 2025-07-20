@@ -31,7 +31,7 @@ block head %} {{ super() }} {% endblock %} {% block content %}
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {% for user in users %}
-    <div class="bg-white p-4 rounded-lg shadow border border-gray-200 hover:shadow-md">
+    <div class="bg-white p-4 rounded-lg shadow border border-gray-200 ">
       <div class="flex items-start">
         <div class="w-12 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold mr-3">
           {{ user["username"][0] | upper }}
