@@ -34,10 +34,6 @@
             ))
             pkgs.sqlite
             pkgs-unstable.opencode
-
-            pkgs.tailwindcss
-            pkgs.tailwindcss-language-server
-            pkgs.nodePackages_latest.tailwindcss
           ];
           env = {
             PYRIGHT_PYTHON_PATH = "${pkgs.python312}/bin/python3";
