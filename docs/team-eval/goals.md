@@ -27,4 +27,6 @@ This goal was achieved.
 This goal was achieved. I learned a lot about Flask and a bit about SQLite, although I was already familiar with the web concepts.
 
 ### Selin Günaydin
-- good teamwork
+- Gain practical experience with GitHub, documentation, and visual studio
+
+This goal was achieved. I worked on GitHub Pages and learned how to structure project documentation.
