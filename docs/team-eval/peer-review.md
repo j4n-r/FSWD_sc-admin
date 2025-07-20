@@ -17,16 +17,7 @@ Selin Günaydin
 {: toc }
 </details>
 
-## [team member] - review 1
+## Jan Rueggeberg - review for Selin Günaydin 
 
-### My observation (Wahrnehmung)
-
-[A specific observation, regarding know-how, effectiveness, team work or from another relevant area]
-
-### Effect on me (Wirkung)
-
-[What positive or negative effect did this observation have on the reviewer?]
-
-### Tip for the future (Wunsch)
-
-[What should be changed or strengthened for the point of view of the reviewer?]
+I know learning programming is hard, and it's completely fine if it's not everyone's passion - I'm willing to write the application myself. I think I did everything I could to help you contribute to the project. Besides, it's not my responsibility to teach you the things we did in the class.
+I would have liked to have better communication about pain points and plans on your end. But since you had some personal issues, I can overlook that.

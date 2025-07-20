@@ -17,12 +17,10 @@ Selin Günaydin
 {: toc }
 </details>
 
-## [Jane Dane]
+## Jan Rüggeberg
 
 Contributions
-: Lorem ipsum dolor
-: Consetetur sadipscing elitr
-: ...
+: Well, pretty much everything.
 
 ## [Joe Doe]
 
